@@ -15,7 +15,8 @@ import {
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MapTypes from './MapTypes';
-import Overlay from './Overlay';
+import Marker from './Overlay/Marker';
+import InfoWindow from './Overlay/InfoWindow';
 
 export default class MapView extends Component {
   static propTypes = {
@@ -33,7 +34,8 @@ export default class MapView extends Component {
     onMapClick: PropTypes.func,
     onMapDoubleClick: PropTypes.func,
     onMarkerClick: PropTypes.func,
-    onMapPoiClick: PropTypes.func
+    onMapPoiClick: PropTypes.func,
+    onBubbleOfMarkerClick: PropTypes.func
   };
 
   static defaultProps = {
@@ -60,12 +62,17 @@ export default class MapView extends Component {
     const markerMap = {};
     for (let i = 0; i < children.length; i++) {
       for (let p in children[i]) {
-        if (children[i].type === Overlay.Marker) {
+        if (children[i].type === Marker) {
           const props = children[i].props;
           markerMap[props.location.latitude + ":" + props.location.longitude] = {
             title: props.title,
             latitude: props.location.latitude,
-            longitude: props.location.longitude
+            longitude: props.location.longitude,
+            alpha: props.alpha,
+            icon: props.icon,
+            rotate: props.rotate,
+            flat: props.flat,
+            infoWindow: props.infoWindow,
           };
         }
       }
@@ -74,7 +81,8 @@ export default class MapView extends Component {
     for (let p in markerMap) {
       markers.push(markerMap[p]);
     }
-    return <BaiduMapView {...this.props} children={[]} markers={markers} onChange={this._onChange.bind(this)}/>;
+
+    return <BaiduMapView {...this.props} markers={markers} onChange={this._onChange.bind(this)}/>;
   }
 
   renderAndroid() {
@@ -92,3 +100,4 @@ export default class MapView extends Component {
 const BaiduMapView = requireNativeComponent('BaiduMapView', MapView, {
   nativeOnly: {onChange: true}
 });
+

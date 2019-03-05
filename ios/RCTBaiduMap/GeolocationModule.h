@@ -22,6 +22,6 @@
 -(void)sendEvent:(NSString *)name body:(NSMutableDictionary *)body;
 -(NSMutableDictionary *)getEmptyBody;
     
-    @end
+@end
 
 #endif /* GeolocationModule_h */

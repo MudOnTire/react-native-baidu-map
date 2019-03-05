@@ -31,8 +31,8 @@ export default class Circle extends Component {
       longitude: 0
     },
     stroke: {
-      width: 5,
-      color: 'AA000000'
+      width: 2,
+      color: 'AA0000FF'
     }
   };
 
@@ -41,9 +41,6 @@ export default class Circle extends Component {
   }
 
   render() {
-    if (Platform.OS === 'ios') {
-      return <View {...this.props} />;
-    }
     return <BaiduMapOverlayCircle {...this.props} />;
   }
 }

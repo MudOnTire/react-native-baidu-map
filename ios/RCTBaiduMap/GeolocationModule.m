@@ -52,7 +52,6 @@ RCT_EXPORT_METHOD(geocode:(NSString *)city addr:(NSString *)addr) {
 }
 
 RCT_EXPORT_METHOD(reverseGeoCode:(double)lat lng:(double)lng) {
-    
     [self getGeocodesearch].delegate = self;
     CLLocationCoordinate2D baiduCoor = CLLocationCoordinate2DMake(lat, lng);
     
@@ -70,7 +69,6 @@ RCT_EXPORT_METHOD(reverseGeoCode:(double)lat lng:(double)lng) {
 }
 
 RCT_EXPORT_METHOD(reverseGeoCodeGPS:(double)lat lng:(double)lng) {
-    
     [self getGeocodesearch].delegate = self;
     CLLocationCoordinate2D baiduCoor = [self getBaiduCoor:lat lng:lng];
     
@@ -78,7 +76,7 @@ RCT_EXPORT_METHOD(reverseGeoCodeGPS:(double)lat lng:(double)lng) {
     
     BMKReverseGeoCodeSearchOption *reverseGeoCodeSearchOption = [[BMKReverseGeoCodeSearchOption alloc]init];
     reverseGeoCodeSearchOption.location = pt;
-    
+
     BOOL flag = [[self getGeocodesearch] reverseGeoCode:reverseGeoCodeSearchOption];
     
     if(flag) {
@@ -116,7 +114,8 @@ RCT_EXPORT_METHOD(reverseGeoCodeGPS:(double)lat lng:(double)lng) {
     
     if (error == BMK_SEARCH_NO_ERROR) {
         // 使用离线地图之前，需要先初始化百度地图
-        [[BMKMapView alloc] initWithFrame:CGRectZero];
+        BMKMapView *mapView = [[BMKMapView alloc] initWithFrame:CGRectZero];
+
         // 离线地图api或去citycode
         BMKOfflineMap *offlineMap = [[BMKOfflineMap alloc] init];
         NSArray *cityCodeArr = [offlineMap searchCity:result.addressDetail.city];
@@ -194,7 +193,7 @@ RCT_EXPORT_METHOD(reverseGeoCodeGPS:(double)lat lng:(double)lng) {
 -(CLLocationCoordinate2D)getBaiduCoor:(double)lat lng:(double)lng {
     CLLocationCoordinate2D coor = CLLocationCoordinate2DMake(lat, lng);
     BMKLocationCoordinateType srctype = BMKLocationCoordinateTypeWGS84;
-    BMKLocationCoordinateType destype = BMKLocationCoordinateTypeBMK09MC;
+    BMKLocationCoordinateType destype = BMKLocationCoordinateTypeBMK09LL;   //lzj fixed
     CLLocationCoordinate2D baiduCoor = [BMKLocationManager BMKLocationCoordinateConvert:coor SrcType:srctype DesType:destype];
     return baiduCoor;
 }

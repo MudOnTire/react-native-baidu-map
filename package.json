@@ -1,6 +1,6 @@
 {
   "name": "react-native-baidu-map",
-  "version": "1.0.6",
+  "version": "1.0.0",
   "description": "Baidu Map SDK modules and view for React Native(Android & IOS), support react native 0.57+. 百度地图 React Native 模块，支持 react native 0.57+，已更新到最新的百度地图SDK版本。",
   "main": "index.js",
   "scripts": {
@@ -8,20 +8,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lovebing/react-native-baidu-map.git"
+    "url": "git+https://github.com/Eafy/react-native-baidu-map-jm.git"
   },
   "keywords": [
     "Baidu Map",
     "React Native"
   ],
-  "author": "lovebing",
+  "author": "Eafy",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lovebing/react-native-baidu-map/issues"
+    "url": "https://github.com/Eafy/react-native-baidu-map-jm/issues"
   },
-  "homepage": "https://github.com/lovebing/react-native-baidu-map#readme",
+  "homepage": "https://github.com/Eafy/react-native-baidu-map-jm#readme",
   "devDependencies": {
-    "react": "16.6.1",
+    "react": "16.6.3",
     "react-native": "^0.57.5"
   }
 }

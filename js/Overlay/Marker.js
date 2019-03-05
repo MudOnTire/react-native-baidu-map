@@ -25,7 +25,14 @@ export default class Marker extends Component {
     alpha: PropTypes.number,
     rotate: PropTypes.number,
     flat: PropTypes.bool,
-    icon: PropTypes.any
+    icon: PropTypes.string,
+    infoWindow:PropTypes.shape({
+      title:PropTypes.string,
+      visible:PropTypes.bool,
+      width:PropTypes.number,
+      height:PropTypes.number,
+      alpha:PropTypes.number
+    })
   };
 
   static defaultProps = {
@@ -41,15 +48,14 @@ export default class Marker extends Component {
   }
 
   render() {
-    let icon;
+    let icon = this.props.icon;
     if (this.props.icon) {
       icon = resolveAssetSource(this.props.icon) || {};
       icon = icon.uri || this.props.icon;
     }
-    if (Platform.OS === 'ios') {
-      return <View {...this.props} icon={icon} />;
-    }
+
     return <BaiduMapOverlayMarker {...this.props} icon={icon} />;
   }
 }
+
 const BaiduMapOverlayMarker = requireNativeComponent('BaiduMapOverlayMarker', Marker);

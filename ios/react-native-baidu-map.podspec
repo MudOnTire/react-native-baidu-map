@@ -9,22 +9,22 @@
 Pod::Spec.new do |s|
 
   s.name         = "react-native-baidu-map"
-  s.version      = "1.0.5"
+  s.version      = "1.0.0"
   s.summary      = "Baidu Map for React Native"
 
   s.description  = <<-DESC
   Baidu Map views and modules for React Native
                    DESC
 
-  s.homepage     = "https://github.com/lovebing/react-native-baidu-map"
+  s.homepage     = "https://github.com/Eafy/react-native-baidu-map-jm"
   s.screenshots  = "https://raw.githubusercontent.com/lovebing/react-native-baidu-map/master/images/android.jpg", "https://raw.githubusercontent.com/lovebing/react-native-baidu-map/master/images/ios.jpg"
 
   s.license      = "MIT"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
-  s.author             = { "lovebing" => "tangyangjian@gmail.com" }
-  # s.authors            = { "lovebing" => "tangyangjian@gmail.com" }
-  # s.social_media_url   = "https://github.com/lovebing"
+  s.author             = { "Eafy" => "lizhijian_21@163.com" }
+  # s.authors            = { "Eafy" => "lizhijian_21@163.com" }
+  # s.social_media_url   = "https://github.com/Eafy"
 
   s.platform     = :ios, "9.0"
 
@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/lovebing/react-native-baidu-map.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/Eafy/react-native-baidu-map-jm.git", :tag => "#{s.version}" }
 
   s.source_files  = "ios/RCTBaiduMap/**/*.{h,m}"
   s.exclude_files = ""
@@ -56,6 +56,6 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   s.dependency "React"
-  s.dependency 'BaiduMapKit', '4.2.0'
+  s.dependency 'BaiduMapKit', '4.2.1'
   s.dependency 'BMKLocationKit', '1.3.0.2'
 end

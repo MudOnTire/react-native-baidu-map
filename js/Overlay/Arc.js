@@ -25,7 +25,9 @@ export default class Arc extends Component {
   };
 
   static defaultProps = {
-    points: [{latitude: 0, longitude: 0}, {latitude: 0, longitude: 0}, {latitude: 0, longitude: 0}]
+    points: [{latitude: 0, longitude: 0}, {latitude: 0, longitude: 0}, {latitude: 0, longitude: 0}],
+    color: 'FFFF0088',
+    width: 1
   };
   
   constructor() {
@@ -33,9 +35,6 @@ export default class Arc extends Component {
   }
 
   render() {
-    if (Platform.OS === 'ios') {
-      return <View {...this.props} />;
-    }
     return <BaiduMapOverlayArc {...this.props} />;
   }
 }

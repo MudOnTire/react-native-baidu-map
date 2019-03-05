@@ -30,7 +30,7 @@ export default class Polygon extends Component {
       longitude: 0
     }],
     stroke: {
-      width: 5,
+      width: 2,
       color: 'AA00FF00'
     }
   };
@@ -40,9 +40,6 @@ export default class Polygon extends Component {
   }
 
   render() {
-    if (Platform.OS === 'ios') {
-      return <View {...this.props} />;
-    }
     return <BaiduMapOverlayPolygon {...this.props} />;
   }
 }
