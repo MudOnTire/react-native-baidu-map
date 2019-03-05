@@ -21,7 +21,9 @@ export default class InfoWindow extends Component {
     ...View.propTypes,
     location: PropTypes.object,
     visible: PropTypes.bool,
-    title: PropTypes.string
+    title: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.number
   };
 
   static defaultProps = {
@@ -38,9 +40,6 @@ export default class InfoWindow extends Component {
   }
 
   render() {
-    if (Platform.OS === 'ios') {
-      return <View {...this.props} />;
-    }
     return <BaiduMapOverlayInfoWindow {...this.props} />;
   }
 }

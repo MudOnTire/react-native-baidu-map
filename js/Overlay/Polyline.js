@@ -20,14 +20,17 @@ export default class Polyline extends Component {
   static propTypes = {
     ...View.propTypes,
     points: PropTypes.array,
-    color: PropTypes.string
+    color: PropTypes.string,
+    width: PropTypes.number
   };
 
   static defaultProps = {
     points: [{
       latitude: 0,
       longitude: 0
-    }]
+    }],
+    color: 'FF00FF44',
+    width: 1
   };
 
   constructor() {
@@ -35,10 +38,8 @@ export default class Polyline extends Component {
   }
 
   render() {
-    if (Platform.OS === 'ios') {
-      return <View {...this.props} />;
-    }
     return <BaiduMapOverlayPolyline {...this.props} />;
   }
 }
+
 const BaiduMapOverlayPolyline = requireNativeComponent('BaiduMapOverlayPolyline', Polyline);
