@@ -1,6 +1,6 @@
 - 此版本为lovebing的分支仓库，特此感谢作者的开源。因项目需求，iOS版百度最新的SDK作者未实现Overlay，个人在其基础上参考Android进行修改和完善。
 
-# react-native-baidu-map [![npm version](https://img.shields.io/npm/v/react-native-baidu-map.svg?style=flat)](https://www.npmjs.com/package/react-native-baidu-map)
+# react-native-baidu-map [![npm version](https://img.shields.io/npm/v/react-native-baidu-map.svg?style=flat)](https://www.npmjs.com/package/react-native-baidu-map-jm)
 
 Baidu Map SDK modules and view for React Native(Android & IOS), support react native 0.57+
 
@@ -32,7 +32,7 @@ https://stackoverflow.com/questions/44061155/react-native-npm-link-local-depende
 - Android Studio: 3.1.3+
 
 3.IOS
-- XCode: 8.0+
+- XCode: 9.0+
 
 
 ### Install 安装
