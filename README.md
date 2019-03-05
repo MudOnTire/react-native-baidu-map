@@ -1,10 +1,12 @@
+- 此版本为lovebing的分支仓库，特此感谢作者的开源。因项目需求，iOS版百度最新的SDK作者未实现Overlay，个人在其基础上参考Android进行修改和完善。
+
 # react-native-baidu-map [![npm version](https://img.shields.io/npm/v/react-native-baidu-map.svg?style=flat)](https://www.npmjs.com/package/react-native-baidu-map)
 
 Baidu Map SDK modules and view for React Native(Android & IOS), support react native 0.57+
 
 百度地图 React Native 模块，支持 react native 0.57+，已更新到最新的百度地图SDK版本。
 
-Overlay for IOS 重构中。
+Overlay for IOS 已完成大部分，暂时可用，InfoWindow在iOS中调整归属为Marker属性，Text未实现。
 
 Marker icon 的实现参考了 https://github.com/react-native-community/react-native-maps 的相关代码。
 
