@@ -1,6 +1,7 @@
-- 此版本为lovebing的分支仓库，特此感谢作者的开源。因项目需求，iOS版百度最新的SDK作者未实现Overlay，个人在其基础上参考Android进行修改和完善。
 
-# react-native-baidu-map [![npm version](https://img.shields.io/npm/v/react-native-baidu-map.svg?style=flat)](https://www.npmjs.com/package/react-native-baidu-map-jm)
+# react-native-baidu-map-jm [![npm version](https://img.shields.io/npm/v/react-native-baidu-map-jm.svg?style=flat)](https://www.npmjs.com/package/react-native-baidu-map-jm)
+
+- 此版本为lovebing的分支仓库，特此感谢作者的开源。因项目需求，iOS版百度最新的SDK作者未实现Overlay，个人在其基础上参考Android进行修改和完善。
 
 Baidu Map SDK modules and view for React Native(Android & IOS), support react native 0.57+
 
