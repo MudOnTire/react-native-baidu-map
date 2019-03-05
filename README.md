@@ -11,8 +11,8 @@ Overlay for IOS 已完成大部分，暂时可用，InfoWindow在iOS中调整归
 
 Marker icon 的实现参考了 https://github.com/react-native-community/react-native-maps 的相关代码。
 
-![Android](https://raw.githubusercontent.com/lovebing/react-native-baidu-map/master/images/android.jpg)
-![IOS](https://raw.githubusercontent.com/lovebing/react-native-baidu-map/master/images/ios.jpg)
+![IOS](https://raw.githubusercontent.com/Eafy/react-native-baidu-map-jm/master/images/ios.jpg)
+![Android](https://raw.githubusercontent.com/Eafy/react-native-baidu-map-jm/master/images/android.jpg)
 
 
 ### Dev & Test 开发和测试说明
@@ -39,18 +39,18 @@ https://stackoverflow.com/questions/44061155/react-native-npm-link-local-depende
 ### Install 安装
 #### 使用本地的包 （以 example 为例）
 ```shell
-mkdir example/node_modules/react-native-baidu-map
-cp -R package.json js index.js ios android LICENSE README.md example/node_modules/react-native-baidu-map/
-rm -rf example/node_modules/react-native-baidu-map/ios/RCTBaiduMap.xcodeproj
+mkdir example/node_modules/react-native-baidu-map-jm
+cp -R package.json js index.js ios android LICENSE README.md example/node_modules/react-native-baidu-map-jm/
+rm -rf example/node_modules/react-native-baidu-map-jm/ios/RCTBaiduMap.xcodeproj
 
 ```
 #### 使用 npm 源
-npm install react-native-baidu-map --save
+npm install react-native-baidu-map-jm --save
 
 ### 原生模块导入
 
 #### Android Studio
-`react-native link react-native-baidu-map`
+`react-native link react-native-baidu-map-jm`
 
 #### IOS/Xcode
 使用 pod
@@ -71,7 +71,7 @@ Podfile 增加
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'react-native-baidu-map', :podspec => '../node_modules/react-native-baidu-map/ios/react-native-baidu-map.podspec'
+  pod 'react-native-baidu-map-jm', :podspec => '../node_modules/react-native-baidu-map/ios/react-native-baidu-map-jm.podspec'
 ```
 
 ##### AppDelegate.m init 初始化

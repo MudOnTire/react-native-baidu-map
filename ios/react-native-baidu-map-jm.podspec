@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "react-native-baidu-map"
-  s.version      = "1.0.0"
+  s.name         = "react-native-baidu-map-jm"
+  s.version      = "1.1.0"
   s.summary      = "Baidu Map for React Native"
 
   s.description  = <<-DESC
