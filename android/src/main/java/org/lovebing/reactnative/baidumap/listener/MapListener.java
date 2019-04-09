@@ -71,10 +71,10 @@ public class MapListener implements BaiduMap.OnMapStatusChangeListener,
         sendEvent(mapView, "onMapStatusChangeStart", getEventParams(mapStatus));
     }
 
-    @Override
-    public void onMapStatusChangeStart(MapStatus mapStatus, int i) {
-
-    }
+//    @Override
+//    public void onMapStatusChangeStart(MapStatus mapStatus, int i) {
+//
+//    }
 
     @Override
     public void onMapStatusChange(MapStatus mapStatus) {

@@ -135,4 +135,11 @@
     [self addAnnotation:annotation];
 }
 
+- (void)setTrackPoints:(NSArray *)trackPoints
+{
+    _trackPoints = trackPoints;
+}
+
+
+
 @end

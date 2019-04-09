@@ -16,7 +16,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MapTypes from './MapTypes';
 import Marker from './Overlay/Marker';
-import InfoWindow from './Overlay/InfoWindow';
+//import InfoWindow from './Overlay/InfoWindow';
 
 export default class MapView extends Component {
   static propTypes = {
@@ -27,6 +27,11 @@ export default class MapView extends Component {
     mapType: PropTypes.number,
     zoom: PropTypes.number,
     center: PropTypes.object,
+    trackPoints: PropTypes.array,
+    showTrack: PropTypes.bool,
+    trackPlayInfo: PropTypes.object,
+    infoWindows: PropTypes.object,
+    tracePoints: PropTypes.array,
     onMapStatusChangeStart: PropTypes.func,
     onMapStatusChange: PropTypes.func,
     onMapStatusChangeFinish: PropTypes.func,
@@ -44,7 +49,10 @@ export default class MapView extends Component {
     baiduHeatMapEnabled: false,
     mapType: MapTypes.NORMAL,
     center: null,
-    zoom: 10
+    zoom: 10,
+    showTrack: false,
+    trackPlayInfo: null,
+    trackPoints: []
   };
 
   constructor() {

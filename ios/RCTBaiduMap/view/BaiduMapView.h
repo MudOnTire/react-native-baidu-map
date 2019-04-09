@@ -20,7 +20,9 @@
 
 @interface BaiduMapView : BMKMapView <BMKMapViewDelegate>
 
-@property (nonatomic, copy) RCTBubblingEventBlock onChange;
+@property (nonatomic,copy) RCTBubblingEventBlock onChange;
+@property (nonatomic,strong) NSArray *trackPoints;
+@property (nonatomic,assign) BOOL showTrack;
 
 - (void)removeBaiduOverlay:(NSNotification *)noti;
 

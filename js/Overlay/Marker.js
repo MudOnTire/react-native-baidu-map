@@ -26,6 +26,7 @@ export default class Marker extends Component {
     rotate: PropTypes.number,
     flat: PropTypes.bool,
     icon: PropTypes.string,
+    visible: PropTypes.bool,
     infoWindow:PropTypes.shape({
       title:PropTypes.string,
       visible:PropTypes.bool,

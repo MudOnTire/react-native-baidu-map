@@ -113,7 +113,6 @@
 				0CE7A583222E266C007830EF /* OverlayCircle.m */,
 				0CE7A584222E266C007830EF /* OverlayView.m */,
 				0CE7A585222E266C007830EF /* OverlayMarker.m */,
-				0CE7A586222E266C007830EF /* BaiduMapView.h */,
 				0CE7A587222E266C007830EF /* OverlayPolyline.h */,
 				0CE7A588222E266C007830EF /* OverlayPolygon.m */,
 				0CE7A589222E266C007830EF /* OverlayInfoWindow.h */,
@@ -121,6 +120,7 @@
 				0CE7A58B222E266C007830EF /* OverlayView.h */,
 				0CE7A58C222E266C007830EF /* OverlayCircle.h */,
 				0CE7A58D222E266C007830EF /* OverlayPolyline.m */,
+				0CE7A586222E266C007830EF /* BaiduMapView.h */,
 				0CE7A58E222E266C007830EF /* BaiduMapView.m */,
 				0CE7A58F222E266C007830EF /* OverlayMarker.h */,
 				0CE7A590222E266C007830EF /* OverlayPolygon.h */,
@@ -152,7 +152,6 @@
 			children = (
 				0CE7A59F222E266C007830EF /* OverlayMarkerManager.h */,
 				0CE7A5A0222E266C007830EF /* OverlayArcManager.m */,
-				0CE7A5A1222E266C007830EF /* BaiduMapViewManager.m */,
 				0CE7A5A2222E266C007830EF /* OverlayPolylineManager.m */,
 				0CE7A5A3222E266C007830EF /* OverlayPolygonManager.h */,
 				0CE7A5A4222E266C007830EF /* OverlayInfoWindowManager.m */,
@@ -160,6 +159,7 @@
 				0CE7A5A6222E266C007830EF /* OverlayArcManager.h */,
 				0CE7A5A7222E266C007830EF /* OverlayMarkerManager.m */,
 				0CE7A5A8222E266C007830EF /* BaiduMapViewManager.h */,
+				0CE7A5A1222E266C007830EF /* BaiduMapViewManager.m */,
 				0CE7A5A9222E266C007830EF /* OverlayPolygonManager.m */,
 				0CE7A5AA222E266C007830EF /* OverlayPolylineManager.h */,
 				0CE7A5AB222E266C007830EF /* OverlayCircleManager.h */,
@@ -247,6 +247,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = EF3C224D1CC2C30D0099E9B6;

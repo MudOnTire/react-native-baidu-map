@@ -21,16 +21,21 @@ export default class Polyline extends Component {
     ...View.propTypes,
     points: PropTypes.array,
     color: PropTypes.string,
-    width: PropTypes.number
+    width: PropTypes.number,
+    visible: PropTypes.bool
   };
 
   static defaultProps = {
     points: [{
-      latitude: 0,
-      longitude: 0
+      lat: 0 + '',
+      lng: 0 + ''
+    },{
+       lat: 0 + '',
+       lng: 0 + ''
     }],
     color: 'FF00FF44',
-    width: 1
+    width: 8,
+    visible: true
   };
 
   constructor() {

@@ -29,6 +29,9 @@ RCT_EXPORT_VIEW_PROPERTY(baiduHeatMapEnabled, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(markers, NSArray*)
 RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
 
+RCT_EXPORT_VIEW_PROPERTY(trackPoints, NSArray*) //轨迹点
+RCT_EXPORT_VIEW_PROPERTY(showTrack, BOOL)
+
 RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, BaiduMapView) {
     [view setCenterCoordinate:json ? [RCTConvert CLLocationCoordinate2D:json] : defaultView.centerCoordinate];
 }

@@ -10,14 +10,18 @@ package org.lovebing.reactnative.baidumap.view;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-
 import android.view.View;
-import android.view.ViewGroup;
-import com.baidu.mapapi.map.*;
+
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.Marker;
+import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.facebook.common.references.CloseableReference;
 import com.facebook.datasource.DataSource;
@@ -35,6 +39,7 @@ import com.facebook.imagepipeline.image.CloseableStaticBitmap;
 import com.facebook.imagepipeline.image.ImageInfo;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
+
 import org.lovebing.reactnative.baidumap.R;
 
 public class OverlayMarker extends View implements OverlayView {
@@ -43,6 +48,7 @@ public class OverlayMarker extends View implements OverlayView {
     private LatLng position;
     private Float rotate;
     private Boolean flat;
+    private Boolean visible;
     private Boolean perspective;
     private BitmapDescriptor iconBitmapDescriptor;
     private Marker marker;
@@ -159,6 +165,13 @@ public class OverlayMarker extends View implements OverlayView {
         }
     }
 
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
+        if (marker != null) {
+            marker.setVisible(visible);
+        }
+    }
+
     public Boolean getPerspective() {
         return perspective;
     }
@@ -250,6 +263,9 @@ public class OverlayMarker extends View implements OverlayView {
     }
 
     private BitmapDescriptor getBitmapDescriptorByName(String name) {
-        return BitmapDescriptorFactory.fromResource(getDrawableResourceByName(name));
+        int resId = getDrawableResourceByName(name);
+        //Bitmap bitmap = zoomImg(BitmapFactory.decodeResource(getResources(), resId), 50, 50);
+        return BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), resId));
+        //return BitmapDescriptorFactory.fromResource(getDrawableResourceByName(name));
     }
 }

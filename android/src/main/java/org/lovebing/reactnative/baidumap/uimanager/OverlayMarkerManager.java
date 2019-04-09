@@ -11,6 +11,7 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
+
 import org.lovebing.reactnative.baidumap.util.LatLngUtil;
 import org.lovebing.reactnative.baidumap.view.OverlayMarker;
 
@@ -59,6 +60,17 @@ public class OverlayMarkerManager extends SimpleViewManager<OverlayMarker> {
     @ReactProp(name = "flat")
     public void setFlat(OverlayMarker overlayMarker, boolean flat) {
         overlayMarker.setFlat(flat);
+    }
+
+    @ReactProp(name = "visible")
+    public void setVisible(OverlayMarker overlayMarker, boolean visible) {
+        overlayMarker.setVisible(visible);
+    }
+
+
+    @ReactProp(name = "infoWindow")
+    public void setInfoWindowContent(OverlayMarker overlayMarker, ReadableMap position){
+
     }
 
 }

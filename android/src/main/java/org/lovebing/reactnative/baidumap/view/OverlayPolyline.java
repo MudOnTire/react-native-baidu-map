@@ -11,7 +11,9 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.Polyline;
 import com.baidu.mapapi.map.PolylineOptions;
@@ -27,6 +29,7 @@ public class OverlayPolyline extends View implements OverlayView {
     private List<LatLng> points;
     private Polyline polyline;
     private int color = 0xAAFF0000;
+    private int width = 8;
 
     public OverlayPolyline(Context context) {
         super(context);
@@ -50,6 +53,7 @@ public class OverlayPolyline extends View implements OverlayView {
     }
 
     public void setPoints(List<LatLng> points) {
+        Log.i("setPoints","更新了点：" + points.size() + " ,polyline:" + polyline);
         this.points = points;
         if (polyline != null) {
             polyline.setPoints(points);
@@ -67,11 +71,23 @@ public class OverlayPolyline extends View implements OverlayView {
         }
     }
 
+    public void setVisible(boolean visible){
+        if (polyline != null){
+            polyline.setVisible(visible);
+        }
+    }
+
+    public void setWidth(int width){
+        this.width = width;
+    }
+
     @Override
     public void addTopMap(BaiduMap baiduMap) {
-        PolylineOptions options = new PolylineOptions().width(getWidth())
-                .color(color).points(points);
-        polyline = (Polyline) baiduMap.addOverlay(options);
+        if(points.size() >=2){
+            PolylineOptions options = new PolylineOptions().width(width) //getWidth()
+                    .color(color).points(points);
+            polyline = (Polyline) baiduMap.addOverlay(options);
+        }
     }
 
     @Override

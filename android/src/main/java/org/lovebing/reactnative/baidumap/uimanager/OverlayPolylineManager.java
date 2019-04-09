@@ -7,13 +7,18 @@
 
 package org.lovebing.reactnative.baidumap.uimanager;
 
+import com.baidu.mapapi.model.LatLng;
 import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
+
 import org.lovebing.reactnative.baidumap.util.ColorUtil;
-import org.lovebing.reactnative.baidumap.util.LatLngUtil;
 import org.lovebing.reactnative.baidumap.view.OverlayPolyline;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -33,12 +38,39 @@ public class OverlayPolylineManager extends SimpleViewManager<OverlayPolyline> {
 
     @ReactProp(name = "points")
     public void setPoints(OverlayPolyline overlayPolyline, ReadableArray points) {
-        overlayPolyline.setPoints(LatLngUtil.fromReadableArray(points));
+        overlayPolyline.setPoints(fromReadableArray(points));
     }
 
     @ReactProp(name = "color")
     public void setColor(OverlayPolyline overlayPolyline, String color) {
         overlayPolyline.setColor(ColorUtil.fromString(color));
+    }
+
+    @ReactProp(name="visible")
+    public void visible(OverlayPolyline overlayPolyline, boolean visible){
+        overlayPolyline.setVisible(visible);
+    }
+
+    @ReactProp(name="width")
+    public void setWidth(OverlayPolyline overlayPolyline, int width ){
+
+    }
+
+    //不用LatLngUtil的那套，应为key值不一样
+    private LatLng fromReadableMap(ReadableMap readableMap) {
+        double lat, lng;
+        lat = Double.parseDouble(readableMap.getString("lat"));
+        lng = Double.parseDouble(readableMap.getString("lng"));
+        return new LatLng(lat, lng);
+    }
+
+    public List<LatLng> fromReadableArray(ReadableArray readableArray) {
+        List<LatLng> list = new ArrayList<>();
+        int size = readableArray.size();
+        for (int i = 0; i < size; i++) {
+            list.add(fromReadableMap(readableArray.getMap(i)));
+        }
+        return list;
     }
 
 }
