@@ -8,12 +8,28 @@
 
 #import "BaiduMapView.h"
 #import "OverlayCircle.h"
-#import "JMMarkerAnnotation.h"
 #import "OverlayInfoWindow.h"
+#import "OverlayPolyline.h"
+#import "TrackUtils.h"
+#import "TrackInfoView.h"
 
-@implementation BaiduMapView {
-    JMMarkerAnnotation *_annotation;
-    NSMutableArray *_annotations;
+@interface BaiduMapView()
+
+@property (nonatomic, strong) NSMutableArray *annotationArray;
+@property (nonatomic, strong) JMMarkerAnnotation *markerAnnotation;
+
+@property (nonatomic, strong) OverlayPolyline *trackPolyline;
+@property (nonatomic, strong) OverlayPolyline *trackLocusPolyline;
+@property (nonatomic, assign) BOOL isTraceEnable;
+@property (nonatomic, strong) NSMutableArray *trackLocusArray;
+
+@end
+
+@implementation BaiduMapView
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
 }
 
 - (void)dealloc
@@ -42,56 +58,62 @@
     self.zoomLevel = zoom;
 }
 
--(void)setCenterLatLng:(NSDictionary *)LatLngObj {
+- (void)setZoomControlsVisible:(BOOL)zoomControlsVisible
+{
+//    self.showMapScaleBar = zoomControlsVisible;
+}
+
+- (void)setCenterLatLng:(NSDictionary *)LatLngObj {
     double lat = [RCTConvert double:LatLngObj[@"lat"]];
     double lng = [RCTConvert double:LatLngObj[@"lng"]];
     CLLocationCoordinate2D point = CLLocationCoordinate2DMake(lat, lng);
     self.centerCoordinate = point;
 }
 
--(void)setMarker:(NSDictionary *)option {
+- (void)setMarker:(NSDictionary *)option {
     if (option != nil) {
-        if(_annotation == nil) {
-            _annotation = [[JMMarkerAnnotation alloc]init];
-            [self addMarker:_annotation option:option];
+        if(_markerAnnotation == nil) {
+            _markerAnnotation = [[JMMarkerAnnotation alloc] init];
+            [self addMarker:_markerAnnotation option:option];
         }
         else {
-            [self updateMarker:_annotation option:option];
+            [self updateMarker:_markerAnnotation option:option];
         }
     }
 }
 
--(void)setMarkers:(NSArray *)markers {
+- (void)setMarkers:(NSArray *)markers
+{
     NSUInteger markersCount = [markers count];
-    if(_annotations == nil) {
-        _annotations = [[NSMutableArray alloc] init];
+    if (_annotationArray == nil) {
+        _annotationArray = [[NSMutableArray alloc] init];
     }
 
-    if(markers != nil) {
+    if (markers != nil) {
         for (int i = 0; i < markersCount; i++)  {
             NSDictionary *option = [markers objectAtIndex:i];
             
             JMMarkerAnnotation *annotation = nil;
-            if(i < [_annotations count]) {
-                annotation = [_annotations objectAtIndex:i];
+            if (i < [_annotationArray count]) {
+                annotation = [_annotationArray objectAtIndex:i];
             }
-            if(annotation == nil) {
-                annotation = [[JMMarkerAnnotation alloc]init];
+
+            if (annotation == nil) {
+                annotation = [[JMMarkerAnnotation alloc] init];
                 [self addMarker:annotation option:option];
-                [_annotations addObject:annotation];
-            }
-            else {
+                [_annotationArray addObject:annotation];
+            } else {
                 [self updateMarker:annotation option:option];
             }
         }
         
-        NSUInteger _annotationsCount = [_annotations count];
-        if(markersCount < _annotationsCount) {
+        NSUInteger _annotationsCount = [_annotationArray count];
+        if (markersCount < _annotationsCount) {
             NSUInteger start = _annotationsCount - 1;
-            for(NSUInteger i = start; i >= markersCount; i--) {
-                JMMarkerAnnotation *annotation = [_annotations objectAtIndex:i];
+            for (NSUInteger i = start; i >= markersCount; i--) {
+                JMMarkerAnnotation *annotation = [_annotationArray objectAtIndex:i];
                 [self removeAnnotation:annotation];
-                [_annotations removeObject:annotation];
+                [_annotationArray removeObject:annotation];
             }
         }
     }
@@ -115,19 +137,53 @@
 }
 
 -(void)updateMarker:(JMMarkerAnnotation *)annotation option:(NSDictionary *)option {
-    CLLocationCoordinate2D coor = [self getCoorFromMarkerOption:option];
-    NSString *title = [RCTConvert NSString:option[@"title"]];
-    if(title.length == 0) {
-        title = nil;
+    BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[self viewForAnnotation:annotation];
+    [self updateAnnotationView:annotationView annotation:annotation dataDic:option];
+}
+
+- (void)updateAnnotationView:(BMKPinAnnotationView *)annotationView annotation:(JMMarkerAnnotation *)annotation dataDic:(NSDictionary *)dataDic
+{
+    if (!annotation) return;
+
+    CLLocationCoordinate2D coor = annotation.coordinate;
+    NSString *title = annotation.title;
+    float alpha = annotation.alpha;
+    BOOL flat =  annotation.flat;
+    NSDictionary *infoWindow = annotation.infoWindow;
+    NSString *iconStr = annotation.icon;
+    float rotate = annotation.rotate;
+
+    if (dataDic) {
+        title = [RCTConvert NSString:dataDic[@"title"]];
+        alpha = [RCTConvert float:dataDic[@"alpha"]];
+        flat = [RCTConvert BOOL:dataDic[@"flat"]];
+        coor = [self getCoorFromMarkerOption:dataDic];
+        iconStr = [RCTConvert NSString:dataDic[@"icon"]];
+        rotate = [RCTConvert float:dataDic[@"rotate"]];
+        infoWindow = [RCTConvert NSDictionary:dataDic[@"infoWindow"]];
     }
 
-    annotation.coordinate = coor;
-    annotation.title = title;
-    annotation.icon = [RCTConvert NSString:option[@"icon"]];
-    annotation.alpha = [RCTConvert float:option[@"alpha"]];
-    annotation.rotate = [RCTConvert float:option[@"rotate"]];
-    annotation.flat = [RCTConvert BOOL:option[@"flat"]];
-    annotation.infoWindow = [RCTConvert NSDictionary:option[@"infoWindow"]];
+    if (annotationView) {
+        annotation.coordinate = coor;
+
+        if (![annotation.icon isEqualToString:iconStr] || !dataDic) {
+            annotation.icon = iconStr;
+            annotationView.image = [annotation getImage];
+        }
+
+        if (annotation.rotate != rotate || !dataDic) {
+            annotation.rotate = rotate;
+            annotationView.transform = CGAffineTransformMakeRotation(annotation.rotate);
+        }
+    } else {
+        annotation.coordinate = coor;
+        annotation.icon = iconStr;
+        annotation.rotate = rotate;
+        annotation.title = title;
+        annotation.alpha = alpha;
+        annotation.flat = flat;
+        annotation.infoWindow = infoWindow;
+    }
 }
 
 - (void)addMarker:(JMMarkerAnnotation *)annotation option:(NSDictionary *)option {
@@ -135,11 +191,148 @@
     [self addAnnotation:annotation];
 }
 
+#pragma mark - 轨迹
+
 - (void)setTrackPoints:(NSArray *)trackPoints
 {
-    _trackPoints = trackPoints;
+    if (trackPoints.count > 0) {
+        _trackPoints = [TrackUtils gpsConversionBaidu:trackPoints];
+        [TrackUtils setAllinVisibleRange:self pointArray:_trackPoints];
+    } else {
+        _trackPoints = nil;
+    }
+
+    [self setShowTrack:self.showTrack];
 }
 
+- (void)setShowTrack:(BOOL)showTrack
+{
+    _showTrack = showTrack;
+    if (_trackLocusPolyline) {  //移除动态轨迹
+        [self.trackLocusPolyline removeFromSuperview];
+        _trackLocusPolyline = nil;
+    }
 
+    if (self.trackPoints.count < 2 || !showTrack) {
+        if (_trackPolyline) {
+            [self.trackPolyline removeFromSuperview];
+            _trackPolyline = nil;
+        }
+        return;
+    } else {
+        if (!_trackPolyline) {
+            self.trackPolyline = [[OverlayPolyline alloc] init];
+            self.trackPolyline.color = @"0xAA50AE6F";
+            self.trackPolyline.width = 2.0;
+            self.trackPolyline.points = self.trackPoints;
+
+            [self.trackPolyline addTopMap:self];
+        } else {
+            self.trackPolyline.points = self.trackPoints;
+        }
+
+        if (self.isTraceEnable) {
+            NSDictionary *startDic = [NSMutableDictionary dictionaryWithDictionary:self.trackPoints.firstObject];
+            [startDic setValue:@"track_icon_start" forKey:@"icon"];
+            NSDictionary *carDic = [NSMutableDictionary dictionaryWithDictionary:self.trackPoints.lastObject];
+            [carDic setValue:@"icon_car" forKey:@"icon"];
+            [self setMarkers:[NSArray arrayWithObjects:startDic, carDic, nil]];
+        } else {
+            if (!_trackLocusArray) {
+                _trackLocusArray = [NSMutableArray array];
+            } else {
+                [self.trackLocusArray removeAllObjects];
+            }
+            NSDictionary *startDic = [NSMutableDictionary dictionaryWithDictionary:self.trackPoints.firstObject];
+            [startDic setValue:@"track_icon_start" forKey:@"icon"];
+            NSDictionary *carDic = [NSMutableDictionary dictionaryWithDictionary:self.trackPoints.firstObject];
+            [carDic setValue:@"icon_car" forKey:@"icon"];
+            NSDictionary *endDic = [NSMutableDictionary dictionaryWithDictionary:self.trackPoints.lastObject];
+            [endDic setValue:@"track_icon_end" forKey:@"icon"];
+
+            [self.trackLocusArray addObjectsFromArray:@[startDic, carDic, endDic]];
+            [self setMarkers:self.trackLocusArray];
+        }
+    }
+}
+
+- (void)setTrackPlayInfo:(NSDictionary *)info
+{
+    if (!info) return;
+
+    int progress = [[info objectForKey:@"progress"] intValue];
+    int angle = [[info objectForKey:@"angle"] intValue];
+    if (progress >= self.trackPoints.count) {
+        return;
+    }
+
+//    if (progress == 2 && _trackPolyline) {    //擦除轨迹
+//        [self.trackPolyline removeFromSuperview];
+//        _trackPolyline = nil;
+//    } else {
+//        [self.trackLocusPolyline removeFromSuperview];
+//        _trackLocusPolyline = nil;
+//    }
+//
+//    if (!_trackLocusPolyline) {
+//        self.trackLocusPolyline = [[OverlayPolyline alloc] init];
+//        self.trackLocusPolyline.color = @"0xAA50AE6F";
+//        self.trackLocusPolyline.width = 2.0;
+//        [self.trackLocusPolyline addTopMap:self];
+//    }
+//    self.trackLocusPolyline.points = [self.trackPoints subarrayWithRange:NSMakeRange(0, progress)]; //更新轨迹
+
+    if ([self.trackLocusArray count] > 1) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[self.trackPoints objectAtIndex:progress]];
+        [dic setObject:[NSNumber numberWithDouble:angle] forKey:@"rotate"];
+        [dic setValue:@"icon_car" forKey:@"icon"];
+        [self.trackLocusArray replaceObjectAtIndex:1 withObject:dic];
+        [self setMarkers:self.trackLocusArray];
+    } else {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[self.trackPoints objectAtIndex:progress]];
+        [dic setObject:[NSNumber numberWithDouble:angle] forKey:@"rotate"];
+        [dic setValue:@"icon_car" forKey:@"icon"];
+        [self setMarkers:[NSArray arrayWithObject:dic]];
+    }
+
+    CLLocationCoordinate2D coor = [TrackUtils getCoordinate:[self.trackPoints objectAtIndex:progress]];
+    CGPoint point = [self convertCoordinate:coor toPointToView:self];
+    if (![self.layer containsPoint:point]) {    //范围放大之后，更新当前坐标，即视角根据车移动
+        BMKMapStatus *mapStatus = [self getMapStatus];
+        mapStatus.targetGeoPt = coor;
+        [self setMapStatus:mapStatus withAnimation:YES];
+    }
+}
+
+- (void)setTracePoints:(NSArray *)tracePoints
+{
+    self.isTraceEnable = YES;
+    [self setTrackPoints:tracePoints];
+}
+
+- (void)setInfoWindows:(NSDictionary *)infoDic
+{
+    if (!infoDic) return;
+
+    NSArray *array = [NSArray arrayWithArray:self.annotations];
+    for (JMMarkerAnnotation *annotation in array) {
+        BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[self viewForAnnotation:annotation];
+        if (annotationView && annotationView.paopaoView) {
+            TrackInfoView *infoView = [annotationView.paopaoView viewWithTag:1024];
+            [infoView setModelDic:infoDic];
+            break;
+        } else {
+            double lat = [[infoDic objectForKey:@"latitude"] doubleValue];
+            double lng = [[infoDic objectForKey:@"longitude"] doubleValue];
+            if (annotation.coordinate.latitude == lat && annotation.coordinate.longitude == lng) {
+                annotation.infoWindow = infoDic;
+                annotation.coordinate = annotation.coordinate;
+                [self removeAnnotation:annotation];
+                [self addAnnotation:annotation];
+                break;
+            }
+        }
+    }
+}
 
 @end

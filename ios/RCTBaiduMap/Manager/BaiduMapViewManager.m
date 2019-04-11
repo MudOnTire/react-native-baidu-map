@@ -12,11 +12,11 @@
 #import <BaiduMapAPI_Map/BMKPolylineView.h>
 #import <BaiduMapAPI_Map/BMKArclineView.h>
 #import "OverlayView.h"
-#import "JMMarkerAnnotation.h"
 #import "JMCircle.h"
 #import "JMPolygon.h"
 #import "JMPolyline.h"
 #import "JMArc.h"
+#import "TrackInfoView.h"
 
 @implementation BaiduMapViewManager
 
@@ -24,18 +24,24 @@ RCT_EXPORT_MODULE(BaiduMapView)
 
 RCT_EXPORT_VIEW_PROPERTY(mapType, int)
 RCT_EXPORT_VIEW_PROPERTY(zoom, float)
+RCT_EXPORT_VIEW_PROPERTY(zoomControlsVisible, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(trafficEnabled, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(baiduHeatMapEnabled, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(markers, NSArray*)
 RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
-
-RCT_EXPORT_VIEW_PROPERTY(trackPoints, NSArray*) //轨迹点
-RCT_EXPORT_VIEW_PROPERTY(showTrack, BOOL)
-
 RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, BaiduMapView) {
     [view setCenterCoordinate:json ? [RCTConvert CLLocationCoordinate2D:json] : defaultView.centerCoordinate];
 }
 
+RCT_EXPORT_VIEW_PROPERTY(trackPoints, NSArray*)
+RCT_EXPORT_VIEW_PROPERTY(showTrack, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(tracePoints, NSArray*)
+RCT_CUSTOM_VIEW_PROPERTY(trackPlayInfo, NSDictionary, BaiduMapView) {
+    [view setTrackPlayInfo:[RCTConvert NSDictionary:json]];
+}
+RCT_CUSTOM_VIEW_PROPERTY(infoWindows, NSDictionary, BaiduMapView) {
+    [view setInfoWindows:[RCTConvert NSDictionary:json]];
+}
 
 +(void)initSDK:(NSString*)key {
     
@@ -48,12 +54,12 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, BaiduMapView) {
 
 - (UIView *)view {
     BaiduMapView* mapView = [[BaiduMapView alloc] init];
+//    mapView.showMapScaleBar = YES;  //比例尺
     mapView.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:mapView selector:@selector(removeBaiduOverlay:) name:kBaiduMapViewRemoveOverlay object:nil];
     return mapView;
 }
-
 
 #pragma mark - BMKMapViewDelegate
 
@@ -118,56 +124,38 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, BaiduMapView) {
 
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[JMMarkerAnnotation class]]) {
-        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"JMMarkerAnnotation"];
-        newAnnotationView.pinColor = BMKPinAnnotationColorPurple;
-        newAnnotationView.animatesDrop = YES;
-        newAnnotationView.hidePaopaoWhenSingleTapOnMap = YES;
-        newAnnotationView.hidePaopaoWhenDoubleTapOnMap = YES;
-        newAnnotationView.hidePaopaoWhenTwoFingersTapOnMap = YES;
-        newAnnotationView.hidePaopaoWhenSelectOthers = YES;
-        newAnnotationView.hidePaopaoWhenDragOthers = YES;
+        BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"JMMarkerAnnotation"];
+        if (!annotationView) {
+            annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"JMMarkerAnnotation"];
+        }
+        annotationView.pinColor = BMKPinAnnotationColorPurple;
+        annotationView.animatesDrop = YES;
+        annotationView.hidePaopaoWhenSingleTapOnMap = NO;
+        annotationView.hidePaopaoWhenDoubleTapOnMap = NO;
+        annotationView.hidePaopaoWhenTwoFingersTapOnMap = NO;
+        annotationView.hidePaopaoWhenSelectOthers = NO;
+        annotationView.hidePaopaoWhenDragOthers = NO;
+        annotationView.hidePaopaoWhenDrag = NO;
 
         JMMarkerAnnotation *markerAnnotation = (JMMarkerAnnotation *)annotation;
-        if (markerAnnotation.icon && ![markerAnnotation.icon isEqualToString:@""]) {
-            UIImage *img = [UIImage imageWithContentsOfFile:markerAnnotation.icon];
-            if (img) {
-                newAnnotationView.image = img;
-            } else {
-                newAnnotationView.image = [UIImage imageNamed:markerAnnotation.icon];
-            }
-        }
+        [(BaiduMapView *)mapView updateAnnotationView:annotationView annotation:markerAnnotation dataDic:nil];
 
         if (markerAnnotation.infoWindow != nil) {
-            UIView * popView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [[markerAnnotation.infoWindow objectForKey:@"width"] doubleValue], [[markerAnnotation.infoWindow objectForKey:@"height"] doubleValue])];
-            popView.backgroundColor = [UIColor whiteColor];
-            [popView.layer setMasksToBounds:YES];
-            [popView.layer setCornerRadius:3.0];
-
-            NSNumber *alphaValue = [markerAnnotation.infoWindow objectForKey:@"alpha"];
-            if (alphaValue) {
-                popView.alpha = [alphaValue doubleValue];
-            } else {
-                popView.alpha = 1.0;
-            }
-
-            NSNumber *visibleValue = [markerAnnotation.infoWindow objectForKey:@"visible"];
-            if (visibleValue) {
-                popView.hidden = ![visibleValue boolValue];
-            }
-
-            UILabel *titleLB = [[UILabel alloc] initWithFrame:popView.bounds];
-            titleLB.text = [markerAnnotation.infoWindow objectForKey:@"title"];
-            titleLB.textAlignment = NSTextAlignmentCenter;
-            titleLB.numberOfLines = 0;
-            titleLB.font = [UIFont systemFontOfSize:14.0];
-            [popView addSubview:titleLB];
-
-            BMKActionPaopaoView * pView = [[BMKActionPaopaoView alloc] initWithCustomView:popView];
+            NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"TrackInfoView" owner:nil options:nil];
+            TrackInfoView *popView = [nibContents lastObject];
+            [popView setModelDic:markerAnnotation.infoWindow];
+            popView.tag = 1024;
+            
+            BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:popView];
             pView.frame = popView.bounds;
-            ((BMKPinAnnotationView *)newAnnotationView).paopaoView = pView;
+            ((BMKPinAnnotationView *)annotationView).paopaoView = pView;
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [mapView selectAnnotation:annotation animated:YES];
+            });
         }
 
-        return newAnnotationView;
+        return annotationView;
     } else if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
         newAnnotationView.pinColor = BMKPinAnnotationColorPurple;
@@ -251,7 +239,7 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, BaiduMapView) {
     return nil;
 }
 
--(void)sendEvent:(BaiduMapView *) mapView params:(NSDictionary *) params {
+- (void)sendEvent:(BaiduMapView *) mapView params:(NSDictionary *) params {
     if (!mapView.onChange) {
         return;
     }

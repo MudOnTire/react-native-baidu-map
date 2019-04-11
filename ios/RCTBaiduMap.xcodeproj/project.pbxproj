@@ -7,29 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0CE7A5AD222E266C007830EF /* OverlayArc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A581222E266C007830EF /* OverlayArc.m */; };
-		0CE7A5AE222E266C007830EF /* OverlayInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A582222E266C007830EF /* OverlayInfoWindow.m */; };
-		0CE7A5AF222E266C007830EF /* OverlayCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A583222E266C007830EF /* OverlayCircle.m */; };
-		0CE7A5B0222E266C007830EF /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A584222E266C007830EF /* OverlayView.m */; };
-		0CE7A5B1222E266C007830EF /* OverlayMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A585222E266C007830EF /* OverlayMarker.m */; };
-		0CE7A5B2222E266C007830EF /* OverlayPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A588222E266C007830EF /* OverlayPolygon.m */; };
-		0CE7A5B3222E266C007830EF /* OverlayPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A58D222E266C007830EF /* OverlayPolyline.m */; };
-		0CE7A5B4222E266C007830EF /* BaiduMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A58E222E266C007830EF /* BaiduMapView.m */; };
-		0CE7A5B5222E266C007830EF /* JMArc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A592222E266C007830EF /* JMArc.m */; };
-		0CE7A5B6222E266C007830EF /* JMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A594222E266C007830EF /* JMCircle.m */; };
-		0CE7A5B7222E266C007830EF /* JMPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A59A222E266C007830EF /* JMPolygon.m */; };
-		0CE7A5B8222E266C007830EF /* JMMarkerAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A59B222E266C007830EF /* JMMarkerAnnotation.m */; };
-		0CE7A5B9222E266C007830EF /* JMPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A59C222E266C007830EF /* JMPolyline.m */; };
-		0CE7A5BA222E266C007830EF /* Stroke.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A59D222E266C007830EF /* Stroke.m */; };
-		0CE7A5BB222E266C007830EF /* OverlayArcManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A5A0222E266C007830EF /* OverlayArcManager.m */; };
-		0CE7A5BC222E266C007830EF /* BaiduMapViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A5A1222E266C007830EF /* BaiduMapViewManager.m */; };
-		0CE7A5BD222E266C007830EF /* OverlayPolylineManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A5A2222E266C007830EF /* OverlayPolylineManager.m */; };
-		0CE7A5BE222E266C007830EF /* OverlayInfoWindowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A5A4222E266C007830EF /* OverlayInfoWindowManager.m */; };
-		0CE7A5BF222E266C007830EF /* OverlayCircleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A5A5222E266C007830EF /* OverlayCircleManager.m */; };
-		0CE7A5C0222E266C007830EF /* OverlayMarkerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A5A7222E266C007830EF /* OverlayMarkerManager.m */; };
-		0CE7A5C1222E266C007830EF /* OverlayPolygonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A5A9222E266C007830EF /* OverlayPolygonManager.m */; };
-		0CE7A5C4222E267E007830EF /* BaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7A5C2222E267E007830EF /* BaseModule.m */; };
-		EF4ABB0D1DC378CF008E75C9 /* GeolocationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4ABB0C1DC378CF008E75C9 /* GeolocationModule.m */; };
+		0C2308C1225F515B0065C5CD /* JMArc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23088C225F515B0065C5CD /* JMArc.m */; };
+		0C2308C2225F515B0065C5CD /* JMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23088E225F515B0065C5CD /* JMCircle.m */; };
+		0C2308C3225F515C0065C5CD /* JMPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C230894225F515B0065C5CD /* JMPolygon.m */; };
+		0C2308C4225F515C0065C5CD /* JMMarkerAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C230895225F515B0065C5CD /* JMMarkerAnnotation.m */; };
+		0C2308C5225F515C0065C5CD /* JMPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C230896225F515B0065C5CD /* JMPolyline.m */; };
+		0C2308C6225F515C0065C5CD /* Stroke.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C230897225F515B0065C5CD /* Stroke.m */; };
+		0C2308C7225F515C0065C5CD /* TrackUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23089A225F515B0065C5CD /* TrackUtils.m */; };
+		0C2308C8225F515C0065C5CD /* OverlayArcManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23089E225F515B0065C5CD /* OverlayArcManager.m */; };
+		0C2308C9225F515C0065C5CD /* BaiduMapViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23089F225F515B0065C5CD /* BaiduMapViewManager.m */; };
+		0C2308CA225F515C0065C5CD /* OverlayPolylineManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308A0225F515B0065C5CD /* OverlayPolylineManager.m */; };
+		0C2308CB225F515C0065C5CD /* OverlayInfoWindowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308A2225F515B0065C5CD /* OverlayInfoWindowManager.m */; };
+		0C2308CC225F515C0065C5CD /* OverlayCircleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308A3225F515B0065C5CD /* OverlayCircleManager.m */; };
+		0C2308CD225F515C0065C5CD /* OverlayMarkerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308A5225F515B0065C5CD /* OverlayMarkerManager.m */; };
+		0C2308CE225F515C0065C5CD /* OverlayPolygonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308A7225F515B0065C5CD /* OverlayPolygonManager.m */; };
+		0C2308CF225F515C0065C5CD /* OverlayArc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308AC225F515B0065C5CD /* OverlayArc.m */; };
+		0C2308D0225F515C0065C5CD /* OverlayInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308AD225F515B0065C5CD /* OverlayInfoWindow.m */; };
+		0C2308D1225F515C0065C5CD /* OverlayCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308AE225F515B0065C5CD /* OverlayCircle.m */; };
+		0C2308D2225F515C0065C5CD /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308AF225F515B0065C5CD /* OverlayView.m */; };
+		0C2308D3225F515C0065C5CD /* OverlayMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308B0225F515B0065C5CD /* OverlayMarker.m */; };
+		0C2308D4225F515C0065C5CD /* OverlayPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308B3225F515B0065C5CD /* OverlayPolygon.m */; };
+		0C2308D5225F515C0065C5CD /* OverlayPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308BA225F515B0065C5CD /* OverlayPolyline.m */; };
+		0C2308D6225F515C0065C5CD /* BaiduMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308BB225F515B0065C5CD /* BaiduMapView.m */; };
+		0C2308D7225F515C0065C5CD /* TrackInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308BD225F515B0065C5CD /* TrackInfoView.m */; };
+		0C2308D8225F515C0065C5CD /* GeolocationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308BF225F515B0065C5CD /* GeolocationModule.m */; };
+		0C2308D9225F515C0065C5CD /* BaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2308C0225F515B0065C5CD /* BaseModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,53 +47,58 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0CE7A581222E266C007830EF /* OverlayArc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayArc.m; sourceTree = "<group>"; };
-		0CE7A582222E266C007830EF /* OverlayInfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayInfoWindow.m; sourceTree = "<group>"; };
-		0CE7A583222E266C007830EF /* OverlayCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayCircle.m; sourceTree = "<group>"; };
-		0CE7A584222E266C007830EF /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
-		0CE7A585222E266C007830EF /* OverlayMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayMarker.m; sourceTree = "<group>"; };
-		0CE7A586222E266C007830EF /* BaiduMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMapView.h; sourceTree = "<group>"; };
-		0CE7A587222E266C007830EF /* OverlayPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayPolyline.h; sourceTree = "<group>"; };
-		0CE7A588222E266C007830EF /* OverlayPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayPolygon.m; sourceTree = "<group>"; };
-		0CE7A589222E266C007830EF /* OverlayInfoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayInfoWindow.h; sourceTree = "<group>"; };
-		0CE7A58A222E266C007830EF /* OverlayArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayArc.h; sourceTree = "<group>"; };
-		0CE7A58B222E266C007830EF /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
-		0CE7A58C222E266C007830EF /* OverlayCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayCircle.h; sourceTree = "<group>"; };
-		0CE7A58D222E266C007830EF /* OverlayPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayPolyline.m; sourceTree = "<group>"; };
-		0CE7A58E222E266C007830EF /* BaiduMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMapView.m; sourceTree = "<group>"; };
-		0CE7A58F222E266C007830EF /* OverlayMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayMarker.h; sourceTree = "<group>"; };
-		0CE7A590222E266C007830EF /* OverlayPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayPolygon.h; sourceTree = "<group>"; };
-		0CE7A592222E266C007830EF /* JMArc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMArc.m; sourceTree = "<group>"; };
-		0CE7A593222E266C007830EF /* JMPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPolygon.h; sourceTree = "<group>"; };
-		0CE7A594222E266C007830EF /* JMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCircle.m; sourceTree = "<group>"; };
-		0CE7A595222E266C007830EF /* JMMarkerAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMMarkerAnnotation.h; sourceTree = "<group>"; };
-		0CE7A596222E266C007830EF /* JMPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPolyline.h; sourceTree = "<group>"; };
-		0CE7A597222E266C007830EF /* Stroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stroke.h; sourceTree = "<group>"; };
-		0CE7A598222E266C007830EF /* JMArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMArc.h; sourceTree = "<group>"; };
-		0CE7A599222E266C007830EF /* JMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCircle.h; sourceTree = "<group>"; };
-		0CE7A59A222E266C007830EF /* JMPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMPolygon.m; sourceTree = "<group>"; };
-		0CE7A59B222E266C007830EF /* JMMarkerAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMMarkerAnnotation.m; sourceTree = "<group>"; };
-		0CE7A59C222E266C007830EF /* JMPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMPolyline.m; sourceTree = "<group>"; };
-		0CE7A59D222E266C007830EF /* Stroke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stroke.m; sourceTree = "<group>"; };
-		0CE7A59F222E266C007830EF /* OverlayMarkerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayMarkerManager.h; sourceTree = "<group>"; };
-		0CE7A5A0222E266C007830EF /* OverlayArcManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayArcManager.m; sourceTree = "<group>"; };
-		0CE7A5A1222E266C007830EF /* BaiduMapViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMapViewManager.m; sourceTree = "<group>"; };
-		0CE7A5A2222E266C007830EF /* OverlayPolylineManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayPolylineManager.m; sourceTree = "<group>"; };
-		0CE7A5A3222E266C007830EF /* OverlayPolygonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayPolygonManager.h; sourceTree = "<group>"; };
-		0CE7A5A4222E266C007830EF /* OverlayInfoWindowManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayInfoWindowManager.m; sourceTree = "<group>"; };
-		0CE7A5A5222E266C007830EF /* OverlayCircleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayCircleManager.m; sourceTree = "<group>"; };
-		0CE7A5A6222E266C007830EF /* OverlayArcManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayArcManager.h; sourceTree = "<group>"; };
-		0CE7A5A7222E266C007830EF /* OverlayMarkerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayMarkerManager.m; sourceTree = "<group>"; };
-		0CE7A5A8222E266C007830EF /* BaiduMapViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMapViewManager.h; sourceTree = "<group>"; };
-		0CE7A5A9222E266C007830EF /* OverlayPolygonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayPolygonManager.m; sourceTree = "<group>"; };
-		0CE7A5AA222E266C007830EF /* OverlayPolylineManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayPolylineManager.h; sourceTree = "<group>"; };
-		0CE7A5AB222E266C007830EF /* OverlayCircleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayCircleManager.h; sourceTree = "<group>"; };
-		0CE7A5AC222E266C007830EF /* OverlayInfoWindowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayInfoWindowManager.h; sourceTree = "<group>"; };
-		0CE7A5C2222E267E007830EF /* BaseModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModule.m; sourceTree = "<group>"; };
-		0CE7A5C3222E267E007830EF /* BaseModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModule.h; sourceTree = "<group>"; };
+		0C23088A225F515B0065C5CD /* BaseModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModule.h; sourceTree = "<group>"; };
+		0C23088C225F515B0065C5CD /* JMArc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMArc.m; sourceTree = "<group>"; };
+		0C23088D225F515B0065C5CD /* JMPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPolygon.h; sourceTree = "<group>"; };
+		0C23088E225F515B0065C5CD /* JMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCircle.m; sourceTree = "<group>"; };
+		0C23088F225F515B0065C5CD /* JMMarkerAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMMarkerAnnotation.h; sourceTree = "<group>"; };
+		0C230890225F515B0065C5CD /* JMPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPolyline.h; sourceTree = "<group>"; };
+		0C230891225F515B0065C5CD /* Stroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stroke.h; sourceTree = "<group>"; };
+		0C230892225F515B0065C5CD /* JMArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMArc.h; sourceTree = "<group>"; };
+		0C230893225F515B0065C5CD /* JMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMCircle.h; sourceTree = "<group>"; };
+		0C230894225F515B0065C5CD /* JMPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMPolygon.m; sourceTree = "<group>"; };
+		0C230895225F515B0065C5CD /* JMMarkerAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMMarkerAnnotation.m; sourceTree = "<group>"; };
+		0C230896225F515B0065C5CD /* JMPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMPolyline.m; sourceTree = "<group>"; };
+		0C230897225F515B0065C5CD /* Stroke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stroke.m; sourceTree = "<group>"; };
+		0C230898225F515B0065C5CD /* GeolocationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeolocationModule.h; sourceTree = "<group>"; };
+		0C23089A225F515B0065C5CD /* TrackUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackUtils.m; sourceTree = "<group>"; };
+		0C23089B225F515B0065C5CD /* TrackUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackUtils.h; sourceTree = "<group>"; };
+		0C23089D225F515B0065C5CD /* OverlayMarkerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayMarkerManager.h; sourceTree = "<group>"; };
+		0C23089E225F515B0065C5CD /* OverlayArcManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayArcManager.m; sourceTree = "<group>"; };
+		0C23089F225F515B0065C5CD /* BaiduMapViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMapViewManager.m; sourceTree = "<group>"; };
+		0C2308A0225F515B0065C5CD /* OverlayPolylineManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayPolylineManager.m; sourceTree = "<group>"; };
+		0C2308A1225F515B0065C5CD /* OverlayPolygonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayPolygonManager.h; sourceTree = "<group>"; };
+		0C2308A2225F515B0065C5CD /* OverlayInfoWindowManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayInfoWindowManager.m; sourceTree = "<group>"; };
+		0C2308A3225F515B0065C5CD /* OverlayCircleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayCircleManager.m; sourceTree = "<group>"; };
+		0C2308A4225F515B0065C5CD /* OverlayArcManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayArcManager.h; sourceTree = "<group>"; };
+		0C2308A5225F515B0065C5CD /* OverlayMarkerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayMarkerManager.m; sourceTree = "<group>"; };
+		0C2308A6225F515B0065C5CD /* BaiduMapViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMapViewManager.h; sourceTree = "<group>"; };
+		0C2308A7225F515B0065C5CD /* OverlayPolygonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayPolygonManager.m; sourceTree = "<group>"; };
+		0C2308A8225F515B0065C5CD /* OverlayPolylineManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayPolylineManager.h; sourceTree = "<group>"; };
+		0C2308A9225F515B0065C5CD /* OverlayCircleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayCircleManager.h; sourceTree = "<group>"; };
+		0C2308AA225F515B0065C5CD /* OverlayInfoWindowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayInfoWindowManager.h; sourceTree = "<group>"; };
+		0C2308AC225F515B0065C5CD /* OverlayArc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayArc.m; sourceTree = "<group>"; };
+		0C2308AD225F515B0065C5CD /* OverlayInfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayInfoWindow.m; sourceTree = "<group>"; };
+		0C2308AE225F515B0065C5CD /* OverlayCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayCircle.m; sourceTree = "<group>"; };
+		0C2308AF225F515B0065C5CD /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
+		0C2308B0225F515B0065C5CD /* OverlayMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayMarker.m; sourceTree = "<group>"; };
+		0C2308B1225F515B0065C5CD /* BaiduMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMapView.h; sourceTree = "<group>"; };
+		0C2308B2225F515B0065C5CD /* OverlayPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayPolyline.h; sourceTree = "<group>"; };
+		0C2308B3225F515B0065C5CD /* OverlayPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayPolygon.m; sourceTree = "<group>"; };
+		0C2308B4225F515B0065C5CD /* TrackInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackInfoView.h; sourceTree = "<group>"; };
+		0C2308B5225F515B0065C5CD /* OverlayInfoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayInfoWindow.h; sourceTree = "<group>"; };
+		0C2308B6225F515B0065C5CD /* OverlayArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayArc.h; sourceTree = "<group>"; };
+		0C2308B7225F515B0065C5CD /* TrackInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackInfoView.xib; sourceTree = "<group>"; };
+		0C2308B8225F515B0065C5CD /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
+		0C2308B9225F515B0065C5CD /* OverlayCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayCircle.h; sourceTree = "<group>"; };
+		0C2308BA225F515B0065C5CD /* OverlayPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayPolyline.m; sourceTree = "<group>"; };
+		0C2308BB225F515B0065C5CD /* BaiduMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMapView.m; sourceTree = "<group>"; };
+		0C2308BC225F515B0065C5CD /* OverlayMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayMarker.h; sourceTree = "<group>"; };
+		0C2308BD225F515B0065C5CD /* TrackInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackInfoView.m; sourceTree = "<group>"; };
+		0C2308BE225F515B0065C5CD /* OverlayPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayPolygon.h; sourceTree = "<group>"; };
+		0C2308BF225F515B0065C5CD /* GeolocationModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeolocationModule.m; sourceTree = "<group>"; };
+		0C2308C0225F515B0065C5CD /* BaseModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModule.m; sourceTree = "<group>"; };
 		EF3C22561CC2C30D0099E9B6 /* libRCTBaiduMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTBaiduMap.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF4ABB0B1DC378BD008E75C9 /* GeolocationModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeolocationModule.h; sourceTree = "<group>"; };
-		EF4ABB0C1DC378CF008E75C9 /* GeolocationModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeolocationModule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,67 +112,94 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0CE7A580222E266C007830EF /* view */ = {
+		0C230889225F515B0065C5CD /* RCTBaiduMap */ = {
 			isa = PBXGroup;
 			children = (
-				0CE7A581222E266C007830EF /* OverlayArc.m */,
-				0CE7A582222E266C007830EF /* OverlayInfoWindow.m */,
-				0CE7A583222E266C007830EF /* OverlayCircle.m */,
-				0CE7A584222E266C007830EF /* OverlayView.m */,
-				0CE7A585222E266C007830EF /* OverlayMarker.m */,
-				0CE7A587222E266C007830EF /* OverlayPolyline.h */,
-				0CE7A588222E266C007830EF /* OverlayPolygon.m */,
-				0CE7A589222E266C007830EF /* OverlayInfoWindow.h */,
-				0CE7A58A222E266C007830EF /* OverlayArc.h */,
-				0CE7A58B222E266C007830EF /* OverlayView.h */,
-				0CE7A58C222E266C007830EF /* OverlayCircle.h */,
-				0CE7A58D222E266C007830EF /* OverlayPolyline.m */,
-				0CE7A586222E266C007830EF /* BaiduMapView.h */,
-				0CE7A58E222E266C007830EF /* BaiduMapView.m */,
-				0CE7A58F222E266C007830EF /* OverlayMarker.h */,
-				0CE7A590222E266C007830EF /* OverlayPolygon.h */,
+				0C23088A225F515B0065C5CD /* BaseModule.h */,
+				0C23088B225F515B0065C5CD /* Module */,
+				0C230898225F515B0065C5CD /* GeolocationModule.h */,
+				0C230899225F515B0065C5CD /* Utils */,
+				0C23089C225F515B0065C5CD /* Manager */,
+				0C2308AB225F515B0065C5CD /* view */,
+				0C2308BF225F515B0065C5CD /* GeolocationModule.m */,
+				0C2308C0225F515B0065C5CD /* BaseModule.m */,
 			);
-			path = view;
+			path = RCTBaiduMap;
 			sourceTree = "<group>";
 		};
-		0CE7A591222E266C007830EF /* Module */ = {
+		0C23088B225F515B0065C5CD /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				0CE7A592222E266C007830EF /* JMArc.m */,
-				0CE7A593222E266C007830EF /* JMPolygon.h */,
-				0CE7A594222E266C007830EF /* JMCircle.m */,
-				0CE7A595222E266C007830EF /* JMMarkerAnnotation.h */,
-				0CE7A596222E266C007830EF /* JMPolyline.h */,
-				0CE7A597222E266C007830EF /* Stroke.h */,
-				0CE7A598222E266C007830EF /* JMArc.h */,
-				0CE7A599222E266C007830EF /* JMCircle.h */,
-				0CE7A59A222E266C007830EF /* JMPolygon.m */,
-				0CE7A59B222E266C007830EF /* JMMarkerAnnotation.m */,
-				0CE7A59C222E266C007830EF /* JMPolyline.m */,
-				0CE7A59D222E266C007830EF /* Stroke.m */,
+				0C23088C225F515B0065C5CD /* JMArc.m */,
+				0C23088D225F515B0065C5CD /* JMPolygon.h */,
+				0C23088E225F515B0065C5CD /* JMCircle.m */,
+				0C23088F225F515B0065C5CD /* JMMarkerAnnotation.h */,
+				0C230890225F515B0065C5CD /* JMPolyline.h */,
+				0C230891225F515B0065C5CD /* Stroke.h */,
+				0C230892225F515B0065C5CD /* JMArc.h */,
+				0C230893225F515B0065C5CD /* JMCircle.h */,
+				0C230894225F515B0065C5CD /* JMPolygon.m */,
+				0C230895225F515B0065C5CD /* JMMarkerAnnotation.m */,
+				0C230896225F515B0065C5CD /* JMPolyline.m */,
+				0C230897225F515B0065C5CD /* Stroke.m */,
 			);
 			path = Module;
 			sourceTree = "<group>";
 		};
-		0CE7A59E222E266C007830EF /* Manager */ = {
+		0C230899225F515B0065C5CD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				0CE7A59F222E266C007830EF /* OverlayMarkerManager.h */,
-				0CE7A5A0222E266C007830EF /* OverlayArcManager.m */,
-				0CE7A5A2222E266C007830EF /* OverlayPolylineManager.m */,
-				0CE7A5A3222E266C007830EF /* OverlayPolygonManager.h */,
-				0CE7A5A4222E266C007830EF /* OverlayInfoWindowManager.m */,
-				0CE7A5A5222E266C007830EF /* OverlayCircleManager.m */,
-				0CE7A5A6222E266C007830EF /* OverlayArcManager.h */,
-				0CE7A5A7222E266C007830EF /* OverlayMarkerManager.m */,
-				0CE7A5A8222E266C007830EF /* BaiduMapViewManager.h */,
-				0CE7A5A1222E266C007830EF /* BaiduMapViewManager.m */,
-				0CE7A5A9222E266C007830EF /* OverlayPolygonManager.m */,
-				0CE7A5AA222E266C007830EF /* OverlayPolylineManager.h */,
-				0CE7A5AB222E266C007830EF /* OverlayCircleManager.h */,
-				0CE7A5AC222E266C007830EF /* OverlayInfoWindowManager.h */,
+				0C23089A225F515B0065C5CD /* TrackUtils.m */,
+				0C23089B225F515B0065C5CD /* TrackUtils.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0C23089C225F515B0065C5CD /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				0C23089D225F515B0065C5CD /* OverlayMarkerManager.h */,
+				0C23089E225F515B0065C5CD /* OverlayArcManager.m */,
+				0C23089F225F515B0065C5CD /* BaiduMapViewManager.m */,
+				0C2308A0225F515B0065C5CD /* OverlayPolylineManager.m */,
+				0C2308A1225F515B0065C5CD /* OverlayPolygonManager.h */,
+				0C2308A2225F515B0065C5CD /* OverlayInfoWindowManager.m */,
+				0C2308A3225F515B0065C5CD /* OverlayCircleManager.m */,
+				0C2308A4225F515B0065C5CD /* OverlayArcManager.h */,
+				0C2308A5225F515B0065C5CD /* OverlayMarkerManager.m */,
+				0C2308A6225F515B0065C5CD /* BaiduMapViewManager.h */,
+				0C2308A7225F515B0065C5CD /* OverlayPolygonManager.m */,
+				0C2308A8225F515B0065C5CD /* OverlayPolylineManager.h */,
+				0C2308A9225F515B0065C5CD /* OverlayCircleManager.h */,
+				0C2308AA225F515B0065C5CD /* OverlayInfoWindowManager.h */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		0C2308AB225F515B0065C5CD /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0C2308AC225F515B0065C5CD /* OverlayArc.m */,
+				0C2308AD225F515B0065C5CD /* OverlayInfoWindow.m */,
+				0C2308AE225F515B0065C5CD /* OverlayCircle.m */,
+				0C2308AF225F515B0065C5CD /* OverlayView.m */,
+				0C2308B0225F515B0065C5CD /* OverlayMarker.m */,
+				0C2308B1225F515B0065C5CD /* BaiduMapView.h */,
+				0C2308B2225F515B0065C5CD /* OverlayPolyline.h */,
+				0C2308B3225F515B0065C5CD /* OverlayPolygon.m */,
+				0C2308B4225F515B0065C5CD /* TrackInfoView.h */,
+				0C2308B5225F515B0065C5CD /* OverlayInfoWindow.h */,
+				0C2308B6225F515B0065C5CD /* OverlayArc.h */,
+				0C2308B7225F515B0065C5CD /* TrackInfoView.xib */,
+				0C2308B8225F515B0065C5CD /* OverlayView.h */,
+				0C2308B9225F515B0065C5CD /* OverlayCircle.h */,
+				0C2308BA225F515B0065C5CD /* OverlayPolyline.m */,
+				0C2308BB225F515B0065C5CD /* BaiduMapView.m */,
+				0C2308BC225F515B0065C5CD /* OverlayMarker.h */,
+				0C2308BD225F515B0065C5CD /* TrackInfoView.m */,
+				0C2308BE225F515B0065C5CD /* OverlayPolygon.h */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		56ACD5443909B8ED0B517164 /* Frameworks */ = {
@@ -178,7 +212,7 @@
 		EF3C224D1CC2C30D0099E9B6 = {
 			isa = PBXGroup;
 			children = (
-				EF3C22581CC2C30D0099E9B6 /* RCTBaiduMap */,
+				0C230889225F515B0065C5CD /* RCTBaiduMap */,
 				EF3C22571CC2C30D0099E9B6 /* Products */,
 				56ACD5443909B8ED0B517164 /* Frameworks */,
 			);
@@ -190,20 +224,6 @@
 				EF3C22561CC2C30D0099E9B6 /* libRCTBaiduMap.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		EF3C22581CC2C30D0099E9B6 /* RCTBaiduMap */ = {
-			isa = PBXGroup;
-			children = (
-				0CE7A59E222E266C007830EF /* Manager */,
-				0CE7A591222E266C007830EF /* Module */,
-				0CE7A580222E266C007830EF /* view */,
-				EF4ABB0B1DC378BD008E75C9 /* GeolocationModule.h */,
-				EF4ABB0C1DC378CF008E75C9 /* GeolocationModule.m */,
-				0CE7A5C3222E267E007830EF /* BaseModule.h */,
-				0CE7A5C2222E267E007830EF /* BaseModule.m */,
-			);
-			path = RCTBaiduMap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,29 +324,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF4ABB0D1DC378CF008E75C9 /* GeolocationModule.m in Sources */,
-				0CE7A5C1222E266C007830EF /* OverlayPolygonManager.m in Sources */,
-				0CE7A5BB222E266C007830EF /* OverlayArcManager.m in Sources */,
-				0CE7A5B5222E266C007830EF /* JMArc.m in Sources */,
-				0CE7A5B0222E266C007830EF /* OverlayView.m in Sources */,
-				0CE7A5C0222E266C007830EF /* OverlayMarkerManager.m in Sources */,
-				0CE7A5B3222E266C007830EF /* OverlayPolyline.m in Sources */,
-				0CE7A5B8222E266C007830EF /* JMMarkerAnnotation.m in Sources */,
-				0CE7A5B1222E266C007830EF /* OverlayMarker.m in Sources */,
-				0CE7A5B6222E266C007830EF /* JMCircle.m in Sources */,
-				0CE7A5C4222E267E007830EF /* BaseModule.m in Sources */,
-				0CE7A5BF222E266C007830EF /* OverlayCircleManager.m in Sources */,
-				0CE7A5B4222E266C007830EF /* BaiduMapView.m in Sources */,
-				0CE7A5AE222E266C007830EF /* OverlayInfoWindow.m in Sources */,
-				0CE7A5AF222E266C007830EF /* OverlayCircle.m in Sources */,
-				0CE7A5B7222E266C007830EF /* JMPolygon.m in Sources */,
-				0CE7A5BA222E266C007830EF /* Stroke.m in Sources */,
-				0CE7A5BE222E266C007830EF /* OverlayInfoWindowManager.m in Sources */,
-				0CE7A5AD222E266C007830EF /* OverlayArc.m in Sources */,
-				0CE7A5B9222E266C007830EF /* JMPolyline.m in Sources */,
-				0CE7A5BC222E266C007830EF /* BaiduMapViewManager.m in Sources */,
-				0CE7A5BD222E266C007830EF /* OverlayPolylineManager.m in Sources */,
-				0CE7A5B2222E266C007830EF /* OverlayPolygon.m in Sources */,
+				0C2308D8225F515C0065C5CD /* GeolocationModule.m in Sources */,
+				0C2308D9225F515C0065C5CD /* BaseModule.m in Sources */,
+				0C2308D5225F515C0065C5CD /* OverlayPolyline.m in Sources */,
+				0C2308CC225F515C0065C5CD /* OverlayCircleManager.m in Sources */,
+				0C2308D4225F515C0065C5CD /* OverlayPolygon.m in Sources */,
+				0C2308CA225F515C0065C5CD /* OverlayPolylineManager.m in Sources */,
+				0C2308CF225F515C0065C5CD /* OverlayArc.m in Sources */,
+				0C2308C3225F515C0065C5CD /* JMPolygon.m in Sources */,
+				0C2308D0225F515C0065C5CD /* OverlayInfoWindow.m in Sources */,
+				0C2308C8225F515C0065C5CD /* OverlayArcManager.m in Sources */,
+				0C2308CD225F515C0065C5CD /* OverlayMarkerManager.m in Sources */,
+				0C2308D6225F515C0065C5CD /* BaiduMapView.m in Sources */,
+				0C2308D2225F515C0065C5CD /* OverlayView.m in Sources */,
+				0C2308D7225F515C0065C5CD /* TrackInfoView.m in Sources */,
+				0C2308C2225F515B0065C5CD /* JMCircle.m in Sources */,
+				0C2308D3225F515C0065C5CD /* OverlayMarker.m in Sources */,
+				0C2308C1225F515B0065C5CD /* JMArc.m in Sources */,
+				0C2308C4225F515C0065C5CD /* JMMarkerAnnotation.m in Sources */,
+				0C2308C5225F515C0065C5CD /* JMPolyline.m in Sources */,
+				0C2308CE225F515C0065C5CD /* OverlayPolygonManager.m in Sources */,
+				0C2308C9225F515C0065C5CD /* BaiduMapViewManager.m in Sources */,
+				0C2308D1225F515C0065C5CD /* OverlayCircle.m in Sources */,
+				0C2308C7225F515C0065C5CD /* TrackUtils.m in Sources */,
+				0C2308CB225F515C0065C5CD /* OverlayInfoWindowManager.m in Sources */,
+				0C2308C6225F515C0065C5CD /* Stroke.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +391,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -406,7 +428,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

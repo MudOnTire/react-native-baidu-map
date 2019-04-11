@@ -22,6 +22,8 @@ extern NSString *const kBaiduMapViewRemoveOverlay;
  */
 - (void)addTopMap:(BMKMapView *)mapView;
 
+- (void)removeTopMap:(BMKMapView *)mapView;
+
 - (void)remove;
 
 @end

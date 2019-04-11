@@ -77,6 +77,11 @@
     [mapView addOverlay:self.polyline];
 }
 
+- (void)removeTopMap:(BMKMapView *)mapView
+{
+    [mapView removeOverlay:self.polyline];
+}
+
 - (void)removeFromSuperview
 {
     if (_polyline) {

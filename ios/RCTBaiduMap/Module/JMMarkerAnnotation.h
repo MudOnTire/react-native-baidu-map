@@ -7,6 +7,7 @@
 //
 
 #import <BaiduMapAPI_Map/BMKPointAnnotation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) float rotate;
 @property (nonatomic, assign) BOOL flat;
 @property (nonatomic, strong) NSDictionary *infoWindow;
+
+- (UIImage *)getImage;
 
 @end
 

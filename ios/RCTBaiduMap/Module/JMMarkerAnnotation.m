@@ -10,4 +10,17 @@
 
 @implementation JMMarkerAnnotation
 
+- (UIImage *)getImage
+{
+    if (self.icon && ![self.icon isEqualToString:@""]) {
+        UIImage *img = [UIImage imageWithContentsOfFile:self.icon];
+        if (img) {
+            return img;
+        } else {
+            return [UIImage imageNamed:self.icon];
+        }
+    }
+
+    return nil;
+}
 @end

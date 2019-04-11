@@ -18,6 +18,11 @@ NSString *const kBaiduMapViewRemoveOverlay = @"kBaiduMapViewRemoveOverlay";
     
 }
 
+- (void)removeTopMap:(BMKMapView *)mapView
+{
+    
+}
+
 - (void)remove
 {
     [self removeFromSuperview];

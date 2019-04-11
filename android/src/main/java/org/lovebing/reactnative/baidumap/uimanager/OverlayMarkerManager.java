@@ -70,7 +70,7 @@ public class OverlayMarkerManager extends SimpleViewManager<OverlayMarker> {
 
     @ReactProp(name = "infoWindow")
     public void setInfoWindowContent(OverlayMarker overlayMarker, ReadableMap position){
-
+        
     }
 
 }
