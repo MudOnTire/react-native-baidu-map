@@ -27,11 +27,6 @@
 
 @implementation BaiduMapView
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-}
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kBaiduMapViewRemoveOverlay object:nil];
@@ -152,8 +147,10 @@
     NSDictionary *infoWindow = annotation.infoWindow;
     NSString *iconStr = annotation.icon;
     float rotate = annotation.rotate;
+    int tag = annotation.tag;
 
     if (dataDic) {
+        tag = [RCTConvert int:dataDic[@"tag"]];
         title = [RCTConvert NSString:dataDic[@"title"]];
         alpha = [RCTConvert float:dataDic[@"alpha"]];
         flat = [RCTConvert BOOL:dataDic[@"flat"]];
@@ -165,7 +162,6 @@
 
     if (annotationView) {
         annotation.coordinate = coor;
-
         if (![annotation.icon isEqualToString:iconStr] || !dataDic) {
             annotation.icon = iconStr;
             annotationView.image = [annotation getImage];
@@ -173,17 +169,20 @@
 
         if (annotation.rotate != rotate || !dataDic) {
             annotation.rotate = rotate;
+//            annotationView.layer.transform = CATransform3DMakeRotation(rotate/360.0, 0, 0, 1);
             annotationView.transform = CGAffineTransformMakeRotation(annotation.rotate);
         }
     } else {
         annotation.coordinate = coor;
-        annotation.icon = iconStr;
-        annotation.rotate = rotate;
-        annotation.title = title;
-        annotation.alpha = alpha;
-        annotation.flat = flat;
-        annotation.infoWindow = infoWindow;
     }
+
+    annotation.tag = tag;
+    annotation.icon = iconStr;
+    annotation.title = title;
+    annotation.alpha = alpha;
+    annotation.flat = flat;
+    annotation.rotate = rotate;
+    annotation.infoWindow = infoWindow;
 }
 
 - (void)addMarker:(JMMarkerAnnotation *)annotation option:(NSDictionary *)option {
@@ -223,7 +222,7 @@
         if (!_trackPolyline) {
             self.trackPolyline = [[OverlayPolyline alloc] init];
             self.trackPolyline.color = @"0xAA50AE6F";
-            self.trackPolyline.width = 2.0;
+            self.trackPolyline.width = 1.0;
             self.trackPolyline.points = self.trackPoints;
 
             [self.trackPolyline addTopMap:self];
@@ -266,6 +265,7 @@
         return;
     }
 
+    /*这个地方有问题，旋转会被还原，所以屏蔽*/
 //    if (progress == 2 && _trackPolyline) {    //擦除轨迹
 //        [self.trackPolyline removeFromSuperview];
 //        _trackPolyline = nil;
@@ -277,7 +277,7 @@
 //    if (!_trackLocusPolyline) {
 //        self.trackLocusPolyline = [[OverlayPolyline alloc] init];
 //        self.trackLocusPolyline.color = @"0xAA50AE6F";
-//        self.trackLocusPolyline.width = 2.0;
+//        self.trackLocusPolyline.width = 1.0;
 //        [self.trackLocusPolyline addTopMap:self];
 //    }
 //    self.trackLocusPolyline.points = [self.trackPoints subarrayWithRange:NSMakeRange(0, progress)]; //更新轨迹
@@ -313,24 +313,25 @@
 - (void)setInfoWindows:(NSDictionary *)infoDic
 {
     if (!infoDic) return;
+    NSNumber *tagValue = [infoDic objectForKey:@"tag"];
+    if (!tagValue) return;
+    int tag = [tagValue intValue];
 
     NSArray *array = [NSArray arrayWithArray:self.annotations];
     for (JMMarkerAnnotation *annotation in array) {
-        BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[self viewForAnnotation:annotation];
-        if (annotationView && annotationView.paopaoView) {
-            TrackInfoView *infoView = [annotationView.paopaoView viewWithTag:1024];
-            [infoView setModelDic:infoDic];
-            break;
-        } else {
-            double lat = [[infoDic objectForKey:@"latitude"] doubleValue];
-            double lng = [[infoDic objectForKey:@"longitude"] doubleValue];
-            if (annotation.coordinate.latitude == lat && annotation.coordinate.longitude == lng) {
+        if (annotation.tag >= 0 && annotation.tag == tag) {
+            BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[self viewForAnnotation:annotation];
+            if (annotationView && annotationView.paopaoView) {
+                TrackInfoView *infoView = [annotationView.paopaoView viewWithTag:(tag + 1)];
+                if (infoView) {
+                    [infoView setModelDic:infoDic];
+                }
+            } else {
                 annotation.infoWindow = infoDic;
-                annotation.coordinate = annotation.coordinate;
                 [self removeAnnotation:annotation];
                 [self addAnnotation:annotation];
-                break;
             }
+            break;
         }
     }
 }

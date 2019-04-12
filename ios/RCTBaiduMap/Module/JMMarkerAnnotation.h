@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JMMarkerAnnotation : BMKPointAnnotation
 
+@property (nonatomic, assign) int tag;
 @property (nonatomic, strong) NSString *icon;
 @property (nonatomic, assign) float alpha;
 @property (nonatomic, assign) float rotate;

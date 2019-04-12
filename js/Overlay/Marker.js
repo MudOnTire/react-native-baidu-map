@@ -27,6 +27,7 @@ export default class Marker extends Component {
     flat: PropTypes.bool,
     icon: PropTypes.string,
     visible: PropTypes.bool,
+    tag: PropTypes.number,
     infoWindow:PropTypes.shape({
       title:PropTypes.string,
       visible:PropTypes.bool,
@@ -37,6 +38,7 @@ export default class Marker extends Component {
   };
 
   static defaultProps = {
+    tag: -1,
     location: {
       latitude: 0,
       longitude: 0

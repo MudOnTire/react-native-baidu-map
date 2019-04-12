@@ -95,11 +95,16 @@ RCT_CUSTOM_VIEW_PROPERTY(infoWindows, NSDictionary, BaiduMapView) {
     [self sendEvent:(BaiduMapView *)mapView params:event];
 }
 
--(void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view {
+-(void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
+{
+    NSString *title = [[view annotation] title];
+    if (!title) {
+        title = @"";
+    }
     NSDictionary* event = @{
                             @"type": @"onMarkerClick",
                             @"params": @{
-                                    @"title": [[view annotation] title],
+                                    @"title": title,
                                     @"position": @{
                                             @"latitude": @([[view annotation] coordinate].latitude),
                                             @"longitude": @([[view annotation] coordinate].longitude)
@@ -143,12 +148,13 @@ RCT_CUSTOM_VIEW_PROPERTY(infoWindows, NSDictionary, BaiduMapView) {
         if (markerAnnotation.infoWindow != nil) {
             NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"TrackInfoView" owner:nil options:nil];
             TrackInfoView *popView = [nibContents lastObject];
-            [popView setModelDic:markerAnnotation.infoWindow];
-            popView.tag = 1024;
-            
-            BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:popView];
-            pView.frame = popView.bounds;
-            ((BMKPinAnnotationView *)annotationView).paopaoView = pView;
+            if (popView) {
+                [popView setModelDic:markerAnnotation.infoWindow];
+
+                BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:popView];
+                pView.frame = popView.bounds;
+                ((BMKPinAnnotationView *)annotationView).paopaoView = pView;
+            }
 
             dispatch_async(dispatch_get_main_queue(), ^{
                 [mapView selectAnnotation:annotation animated:YES];
@@ -183,10 +189,14 @@ RCT_CUSTOM_VIEW_PROPERTY(infoWindows, NSDictionary, BaiduMapView) {
 
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view
 {
+    NSString *title = [[view annotation] title];
+    if (!title) {
+        title = @"";
+    }
     NSDictionary* event = @{
                             @"type": @"onBubbleOfMarkerClick",
                             @"params": @{
-                                    @"title": [[view annotation] title],
+                                    @"title": title,
                                     @"position": @{
                                             @"latitude": @([[view annotation] coordinate].latitude),
                                             @"longitude": @([[view annotation] coordinate].longitude)

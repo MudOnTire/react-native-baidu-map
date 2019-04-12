@@ -73,6 +73,7 @@ export default class MapView extends Component {
         if (children[i].type === Marker) {
           const props = children[i].props;
           markerMap[props.location.latitude + ":" + props.location.longitude] = {
+            tag: props.tag,
             title: props.title,
             latitude: props.location.latitude,
             longitude: props.location.longitude,
