@@ -27,6 +27,7 @@
 @property (nonatomic, assign) BOOL flat;
 @property (nonatomic, strong) NSDictionary *infoWindow;
 @property (nonatomic, assign) CLLocationCoordinate2D location;
+@property (nonatomic, assign) BOOL visible;
 
 @end
 

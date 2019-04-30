@@ -10,17 +10,16 @@
 #import <React/RCTConvert.h>
 
 NSString *const kBaiduMapViewRemoveOverlay = @"kBaiduMapViewRemoveOverlay";
+NSString *const kBaiduMapOverlayVisible = @"kBaiduMapOverlayVisible";
 
 @implementation OverlayView
 
 - (void)addTopMap:(BMKMapView *)mapView
 {
-    
 }
 
 - (void)removeTopMap:(BMKMapView *)mapView
 {
-    
 }
 
 - (void)remove

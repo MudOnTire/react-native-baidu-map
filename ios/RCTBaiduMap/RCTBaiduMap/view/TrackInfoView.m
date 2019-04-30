@@ -13,6 +13,8 @@
 @interface TrackInfoView()
 
 @property (nonatomic, strong) NSURLSessionDataTask *sessionTask;
+@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, assign) CGFloat adjustmentHeight;
 
 @end
 
@@ -25,7 +27,7 @@
         NSDictionary *attributes = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
         textSize = [str sizeWithAttributes:attributes];
     } else {
-        NSStringDrawingOptions option = NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
+        NSStringDrawingOptions option = NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin;
         NSDictionary *attributes = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
         CGRect rect = [str boundingRectWithSize:maxSize
                                          options:option
@@ -47,8 +49,8 @@
 - (void)setHeightWithView:(UIView *)view height:(CGFloat)height
 {
     CGRect frame = view.frame;
-    frame.size.height = height;
-    view.frame = frame;
+    view.frame = CGRectMake(frame.origin.x, frame.origin.y + view.frame.size.height - height - self.adjustmentHeight, frame.size.width, height);
+    self.adjustmentHeight = 0;
 }
 
 #pragma mark -
@@ -59,10 +61,11 @@
 
     self.backgroundColor = [UIColor clearColor];
     [self setWidthWithView:self width:[[UIScreen mainScreen] bounds].size.width/3.0*2];
+    self.adjustmentHeight = 5.0;
 
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    imageView.image = [UIImage imageNamed:@"frame_map_mark_info_bg"];
-    [self insertSubview:imageView atIndex:0];
+    _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    self.imageView.image = [UIImage imageNamed:@"frame_map_mark_info_bg"];
+    [self insertSubview:self.imageView atIndex:0];
 
     self.speedImageView.image = [UIImage imageNamed:@"frame_speed"];
 
@@ -91,13 +94,25 @@
     NSString *gpsNum = [modelDic objectForKey:@"gpsNum"];
     NSString *lat = [modelDic objectForKey:@"latitude"];
     NSString *lng = [modelDic objectForKey:@"longitude"];
+    NSString *posType = [modelDic objectForKey:@"positionType"];
+    NSNumber *isShow = [modelDic objectForKey:@"isShow"];  //是否显示
+    if (isShow) {
+        self.hidden = ![isShow boolValue];
+    }
+    NSLog(@"%@", modelDic);
 
     [self updateCarState:status time:idelTiem];
     [self updateSignalStatus:gpsSigna];
     self.gpsTimeLabel.text = [NSString stringWithFormat:@"定位时间: %@", positionTime];
     self.hbTimeLabel.text = [NSString stringWithFormat:@"通讯时间: %@", communicationTime];
-    self.gpsSpeedLabel.text = [NSString stringWithFormat:@"%@km/h", speed];
-    self.gpsCountLabel.text = [NSString stringWithFormat:@"卫星定位: %@", gpsNum];
+    self.gpsSpeedLabel.text = [NSString stringWithFormat:@"%@km/h", speed ? speed : @"0"];
+    if ([posType isEqualToString:@"GPS"]) {
+        self.gpsCountLabel.text = [NSString stringWithFormat:@"GPS定位: %@", gpsNum];
+    } else if ([posType isEqualToString:@"LBS"]) {
+        self.gpsCountLabel.text = @"基站定位";
+    } else if ([posType isEqualToString:@"WIFI"]) {
+        self.gpsCountLabel.text = @"WIFI定位";
+    }
 
     NSString *urlString = [NSString stringWithFormat:@"http://poi.jimicloud.com/poi?_method_=geocoderForBaiDu&latlng=%@,%@&token=3500307a93c6fc335efa71f60438b465&language=%@", lat, lng, @"zh"];
     NSURL *requestURL = [NSURL URLWithString:urlString];
@@ -115,10 +130,10 @@
                 NSString *address = [dataDic objectForKey:@"msg"];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     weakSelf.addressLabel.text = [NSString stringWithFormat:@"%@", address];
-                    CGSize size = [weakSelf sizeWithString:weakSelf.addressLabel.text font:weakSelf.addressLabel.font maxSize:CGSizeMake(weakSelf.addressLabel.bounds.size.width, MAXFLOAT)];
-                    CGFloat pHeight = weakSelf.frame.size.height - weakSelf.addressLabel.frame.origin.x;
-                    CGFloat height = size.height - pHeight;
-                    [weakSelf setHeightWithView:weakSelf height:weakSelf.bounds.size.height - height];
+                    CGSize size = [weakSelf sizeWithString:weakSelf.addressLabel.text font:weakSelf.addressLabel.font maxSize:CGSizeMake(weakSelf.bounds.size.width-self.addressHintLabel.frame.origin.x-self.addressHintLabel.bounds.size.width-15, MAXFLOAT)];
+                    CGFloat pHeight = weakSelf.addressLabel.frame.origin.y + size.height + 25;   //需要的高度+底部三角形高度
+                    [weakSelf setHeightWithView:weakSelf height:pHeight];
+                    weakSelf.imageView.frame = weakSelf.bounds;
                 });
             }
         }

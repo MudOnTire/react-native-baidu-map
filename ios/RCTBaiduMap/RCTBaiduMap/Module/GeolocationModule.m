@@ -8,7 +8,6 @@
 
 #import "GeolocationModule.h"
 
-
 @implementation GeolocationModule {
     BMKPointAnnotation* _annotation;
 }
@@ -38,8 +37,10 @@ RCT_EXPORT_METHOD(geocode:(NSString *)city addr:(NSString *)addr) {
     [self getGeocodesearch].delegate = self;
     
     BMKGeoCodeSearchOption *geoCodeSearchOption = [[BMKGeoCodeSearchOption alloc]init];
-    
-    geoCodeSearchOption.city= city;
+
+    if (city && [city isEqualToString:@""]) {
+        geoCodeSearchOption.city= city;
+    }
     geoCodeSearchOption.address = addr;
     
     BOOL flag = [[self getGeocodesearch] geoCode:geoCodeSearchOption];
@@ -85,7 +86,7 @@ RCT_EXPORT_METHOD(reverseGeoCodeGPS:(double)lat lng:(double)lng) {
     //[reverseGeoCodeSearchOption release];
 }
 
--(BMKGeoCodeSearch *)getGeocodesearch{
+- (BMKGeoCodeSearch *)getGeocodesearch{
     if(geoCodeSearch == nil) {
         geoCodeSearch = [[BMKGeoCodeSearch alloc]init];
     }
@@ -103,11 +104,14 @@ RCT_EXPORT_METHOD(reverseGeoCodeGPS:(double)lat lng:(double)lng) {
     }
     else {
         body[@"errcode"] = [NSString stringWithFormat:@"%d", error];
-        body[@"errmsg"] = [self getSearchErrorInfo:error];
+        body[@"errmsg"] = [GeolocationModule getSearchErrorInfo:error];
     }
     [self sendEvent:@"onGetGeoCodeResult" body:body];
     
 }
+
+#pragma mark - BMKGeoCodeSearchDelegate
+
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeSearchResult *)result errorCode:(BMKSearchErrorCode)error {
     
     NSMutableDictionary *body = [self getEmptyBody];
@@ -139,13 +143,14 @@ RCT_EXPORT_METHOD(reverseGeoCodeGPS:(double)lat lng:(double)lng) {
     }
     else {
         body[@"errcode"] = [NSString stringWithFormat:@"%d", error];
-        body[@"errmsg"] = [self getSearchErrorInfo:error];
+        body[@"errmsg"] = [GeolocationModule getSearchErrorInfo:error];
     }
     [self sendEvent:@"onGetReverseGeoCodeResult" body:body];
     
     geoCodeSearch.delegate = nil;
 }
--(NSString *)getSearchErrorInfo:(BMKSearchErrorCode)error {
+
++ (NSString *)getSearchErrorInfo:(BMKSearchErrorCode)error {
     NSString *errormsg = @"未知";
     switch (error) {
         case BMK_SEARCH_AMBIGUOUS_KEYWORD:
@@ -196,11 +201,6 @@ RCT_EXPORT_METHOD(reverseGeoCodeGPS:(double)lat lng:(double)lng) {
     BMKLocationCoordinateType destype = BMKLocationCoordinateTypeBMK09LL;   //lzj fixed
     CLLocationCoordinate2D baiduCoor = [BMKLocationManager BMKLocationCoordinateConvert:coor SrcType:srctype DesType:destype];
     return baiduCoor;
-}
-    
--(NSMutableDictionary *)getEmptyBody {
-    NSMutableDictionary *body = @{}.mutableCopy;
-    return body;
 }
     
 -(void)sendEvent:(NSString *)name body:(NSMutableDictionary *)body {

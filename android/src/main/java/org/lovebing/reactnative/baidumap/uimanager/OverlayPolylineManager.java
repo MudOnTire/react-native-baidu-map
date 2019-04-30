@@ -7,9 +7,9 @@
 
 package org.lovebing.reactnative.baidumap.uimanager;
 
-import com.baidu.mapapi.model.LatLng;
+import android.content.Context;
+
 import com.facebook.react.bridge.ReadableArray;
-import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
@@ -17,8 +17,7 @@ import com.facebook.react.uimanager.annotations.ReactProp;
 import org.lovebing.reactnative.baidumap.util.ColorUtil;
 import org.lovebing.reactnative.baidumap.view.OverlayPolyline;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.lovebing.reactnative.baidumap.util.LatLngUtil.fromReadableArray;
 
 
 /**
@@ -53,24 +52,35 @@ public class OverlayPolylineManager extends SimpleViewManager<OverlayPolyline> {
 
     @ReactProp(name="width")
     public void setWidth(OverlayPolyline overlayPolyline, int width ){
+        overlayPolyline.setWidth(dip2px(overlayPolyline.getContext(),width));
+    }
 
+    /**
+     * 根据手机分辨率从DP转成PX
+     * @param context
+     * @param dpValue
+     * @return
+     */
+    private int dip2px(Context context, int dpValue) {
+        float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 
     //不用LatLngUtil的那套，应为key值不一样
-    private LatLng fromReadableMap(ReadableMap readableMap) {
-        double lat, lng;
-        lat = Double.parseDouble(readableMap.getString("lat"));
-        lng = Double.parseDouble(readableMap.getString("lng"));
-        return new LatLng(lat, lng);
-    }
-
-    public List<LatLng> fromReadableArray(ReadableArray readableArray) {
-        List<LatLng> list = new ArrayList<>();
-        int size = readableArray.size();
-        for (int i = 0; i < size; i++) {
-            list.add(fromReadableMap(readableArray.getMap(i)));
-        }
-        return list;
-    }
+//    private LatLng fromReadableMap(ReadableMap readableMap) {
+//        double lat, lng;
+//        lat = Double.parseDouble(readableMap.getString("lat"));
+//        lng = Double.parseDouble(readableMap.getString("lng"));
+//        return new LatLng(lat, lng);
+//    }
+//
+//    public List<LatLng> fromReadableArray(ReadableArray readableArray) {
+//        List<LatLng> list = new ArrayList<>();
+//        int size = readableArray.size();
+//        for (int i = 0; i < size; i++) {
+//            list.add(fromReadableMap(readableArray.getMap(i)));
+//        }
+//        return list;
+//    }
 
 }

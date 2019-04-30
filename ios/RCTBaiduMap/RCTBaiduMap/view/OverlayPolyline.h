@@ -8,6 +8,7 @@
 
 #import "OverlayView.h"
 #import "Stroke.h"
+#import "JMPolyline.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray *points;
 @property (nonatomic,copy) NSString *color;
 @property (nonatomic,assign) float width;
+@property (nonatomic,assign) BOOL visible;
 
 @end
 

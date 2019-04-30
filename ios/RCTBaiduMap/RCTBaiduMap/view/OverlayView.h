@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 extern NSString *const kBaiduMapViewRemoveOverlay;
+extern NSString *const kBaiduMapOverlayVisible;
 
 @interface OverlayView : UIView
 

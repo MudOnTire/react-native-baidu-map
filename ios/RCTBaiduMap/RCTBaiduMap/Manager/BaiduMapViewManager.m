@@ -17,6 +17,7 @@
 #import "JMPolyline.h"
 #import "JMArc.h"
 #import "TrackInfoView.h"
+#import "JMPinAnnotationView.h"
 
 @implementation BaiduMapViewManager
 
@@ -25,19 +26,18 @@ RCT_EXPORT_MODULE(BaiduMapView)
 RCT_EXPORT_VIEW_PROPERTY(mapType, int)
 RCT_EXPORT_VIEW_PROPERTY(zoom, float)
 RCT_EXPORT_VIEW_PROPERTY(zoomControlsVisible, BOOL)
-RCT_EXPORT_VIEW_PROPERTY(trafficEnabled, BOOL)
-RCT_EXPORT_VIEW_PROPERTY(baiduHeatMapEnabled, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(trafficEnabled, BOOL)          //路况图层
+RCT_EXPORT_VIEW_PROPERTY(baiduHeatMapEnabled, BOOL)     //热力图
+RCT_EXPORT_VIEW_PROPERTY(buildingsEnabled, BOOL)        //3D建筑物
+RCT_EXPORT_VIEW_PROPERTY(overlookEnabled, BOOL)         //俯仰角
 RCT_EXPORT_VIEW_PROPERTY(markers, NSArray*)
 RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(visualRange, NSArray*)         //可视范围
 RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, BaiduMapView) {
     [view setCenterCoordinate:json ? [RCTConvert CLLocationCoordinate2D:json] : defaultView.centerCoordinate];
 }
-
-RCT_EXPORT_VIEW_PROPERTY(trackPoints, NSArray*)
-RCT_EXPORT_VIEW_PROPERTY(showTrack, BOOL)
-RCT_EXPORT_VIEW_PROPERTY(tracePoints, NSArray*)
-RCT_CUSTOM_VIEW_PROPERTY(trackPlayInfo, NSDictionary, BaiduMapView) {
-    [view setTrackPlayInfo:[RCTConvert NSDictionary:json]];
+RCT_CUSTOM_VIEW_PROPERTY(correctPerspective, NSDictionary, BaiduMapView) {
+    [view setCorrectPerspective:[RCTConvert NSDictionary:json]];
 }
 RCT_CUSTOM_VIEW_PROPERTY(infoWindows, NSDictionary, BaiduMapView) {
     [view setInfoWindows:[RCTConvert NSDictionary:json]];
@@ -54,10 +54,10 @@ RCT_CUSTOM_VIEW_PROPERTY(infoWindows, NSDictionary, BaiduMapView) {
 
 - (UIView *)view {
     BaiduMapView* mapView = [[BaiduMapView alloc] init];
-//    mapView.showMapScaleBar = YES;  //比例尺
     mapView.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:mapView selector:@selector(removeBaiduOverlay:) name:kBaiduMapViewRemoveOverlay object:nil];
+    
     return mapView;
 }
 
@@ -129,12 +129,12 @@ RCT_CUSTOM_VIEW_PROPERTY(infoWindows, NSDictionary, BaiduMapView) {
 
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[JMMarkerAnnotation class]]) {
-        BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"JMMarkerAnnotation"];
+        JMPinAnnotationView *annotationView = (JMPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"JMMarkerAnnotation"];
         if (!annotationView) {
-            annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"JMMarkerAnnotation"];
+            annotationView = [[JMPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"JMMarkerAnnotation"];
         }
-        annotationView.pinColor = BMKPinAnnotationColorPurple;
-        annotationView.animatesDrop = YES;
+//        annotationView.pinColor = BMKPinAnnotationColorPurple;
+//        annotationView.animatesDrop = YES;
         annotationView.hidePaopaoWhenSingleTapOnMap = NO;
         annotationView.hidePaopaoWhenDoubleTapOnMap = NO;
         annotationView.hidePaopaoWhenTwoFingersTapOnMap = NO;
@@ -145,7 +145,7 @@ RCT_CUSTOM_VIEW_PROPERTY(infoWindows, NSDictionary, BaiduMapView) {
         JMMarkerAnnotation *markerAnnotation = (JMMarkerAnnotation *)annotation;
         [(BaiduMapView *)mapView updateAnnotationView:annotationView annotation:markerAnnotation dataDic:nil];
 
-        if (markerAnnotation.infoWindow != nil) {
+        if (markerAnnotation.tag >= 0 && markerAnnotation.infoWindow != nil) {
             NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"TrackInfoView" owner:nil options:nil];
             TrackInfoView *popView = [nibContents lastObject];
             if (popView) {
@@ -153,7 +153,7 @@ RCT_CUSTOM_VIEW_PROPERTY(infoWindows, NSDictionary, BaiduMapView) {
 
                 BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:popView];
                 pView.frame = popView.bounds;
-                ((BMKPinAnnotationView *)annotationView).paopaoView = pView;
+                ((JMPinAnnotationView *)annotationView).paopaoView = pView;
             }
 
             dispatch_async(dispatch_get_main_queue(), ^{

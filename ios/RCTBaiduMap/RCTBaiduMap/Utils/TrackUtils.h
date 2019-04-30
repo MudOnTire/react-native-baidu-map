@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param mapView 百度地图
  @param points 坐标数组
  */
-+ (void)setAllinVisibleRange:(BaiduMapView *)mapView pointArray:(NSArray *)points;
++ (void)setVisualRange:(BaiduMapView *)mapView pointArray:(NSArray *)points;
 
 @end
 

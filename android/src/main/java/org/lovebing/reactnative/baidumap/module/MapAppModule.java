@@ -79,11 +79,13 @@ public class MapAppModule extends BaseModule {
             case "百度地图":
                 intent= new Intent("android.intent.action.VIEW",
                         android.net.Uri.parse("baidumap://map/geocoder?location=" + lat + "," + lng));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                 context.startActivity(intent);
                 break;
             case "高德地图":
                 intent = new Intent("android.intent.action.VIEW",
                         android.net.Uri.parse("androidamap://route?sourceApplication=appName&slat=&slon=&sname=我的位置&dlat="+ lat +"&dlon="+ lng+"&dname=目的地&dev=0&t=2"));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                 context.startActivity(intent);
                 break;
         }

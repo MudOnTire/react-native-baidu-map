@@ -27,11 +27,12 @@ export default class MapView extends Component {
     mapType: PropTypes.number,
     zoom: PropTypes.number,
     center: PropTypes.object,
-    trackPoints: PropTypes.array,
-    showTrack: PropTypes.bool,
+    buildingsEnabled: PropTypes.bool,
+    overlookEnabled: PropTypes.bool,
     trackPlayInfo: PropTypes.object,
+    visualRange: PropTypes.array,
     infoWindows: PropTypes.object,
-    tracePoints: PropTypes.array,
+    correctPerspective:PropTypes.object,
     onMapStatusChangeStart: PropTypes.func,
     onMapStatusChange: PropTypes.func,
     onMapStatusChangeFinish: PropTypes.func,
@@ -47,12 +48,14 @@ export default class MapView extends Component {
     zoomControlsVisible: true,
     trafficEnabled: false,
     baiduHeatMapEnabled: false,
+    buildingsEnabled: true,
+    overlookEnabled: true,
     mapType: MapTypes.NORMAL,
     center: null,
     zoom: 10,
     showTrack: false,
     trackPlayInfo: null,
-    trackPoints: []
+    visualRange: []
   };
 
   constructor() {
@@ -72,8 +75,8 @@ export default class MapView extends Component {
       for (let p in children[i]) {
         if (children[i].type === Marker) {
           const props = children[i].props;
-          markerMap[props.location.latitude + ":" + props.location.longitude] = {
-            tag: props.tag,
+          markerMap[props.location.latitude + ":" + props.location.longitude + ":" + props.icon] = {
+			      tag: props.tag,
             title: props.title,
             latitude: props.location.latitude,
             longitude: props.location.longitude,
@@ -82,6 +85,7 @@ export default class MapView extends Component {
             rotate: props.rotate,
             flat: props.flat,
             infoWindow: props.infoWindow,
+			      visible: props.visible
           };
         }
       }
@@ -90,7 +94,6 @@ export default class MapView extends Component {
     for (let p in markerMap) {
       markers.push(markerMap[p]);
     }
-
     return <BaiduMapView {...this.props} markers={markers} onChange={this._onChange.bind(this)}/>;
   }
 

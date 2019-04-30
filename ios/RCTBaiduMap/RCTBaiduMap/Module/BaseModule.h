@@ -13,14 +13,13 @@
 #import <React/RCTEventDispatcher.h>
 #import <React/RCTBridge.h>
 
-
 @interface BaseModule : NSObject <RCTBridgeModule> {
     UINavigationController *navigationController;
 }
 
--(void)sendEvent:(NSString *)name body:(NSMutableDictionary *)body;
+- (void)sendEvent:(NSString *)name body:(NSMutableDictionary *)body;
 
--(NSMutableDictionary *)getEmptyBody;
+- (NSMutableDictionary *)getEmptyBody;
 
 @end
 

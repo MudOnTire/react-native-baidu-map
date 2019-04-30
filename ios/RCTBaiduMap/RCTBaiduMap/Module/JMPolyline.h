@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,strong) UIColor *color;
 @property (nonatomic,assign) float width;
+@property (nonatomic,assign) BOOL visible;
 
 @end
 

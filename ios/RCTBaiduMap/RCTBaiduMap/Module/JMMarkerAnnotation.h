@@ -20,7 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL flat;
 @property (nonatomic, strong) NSDictionary *infoWindow;
 
+@property (nonatomic, strong) UIImage *iconImage;
+
 - (UIImage *)getImage;
+
++ (UIImage *)imageRotated:(UIImage *)image radians:(CGFloat)radians;
 
 @end
 

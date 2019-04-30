@@ -39,6 +39,7 @@ export default class Marker extends Component {
 
   static defaultProps = {
     tag: -1,
+	visible:true,
     location: {
       latitude: 0,
       longitude: 0

@@ -19,6 +19,7 @@ RCT_EXPORT_VIEW_PROPERTY(alpha, float)
 RCT_EXPORT_VIEW_PROPERTY(rotate, float)
 RCT_EXPORT_VIEW_PROPERTY(flat, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(infoWindow, NSDictionary*)
+RCT_EXPORT_VIEW_PROPERTY(visible, BOOL)
 
 RCT_CUSTOM_VIEW_PROPERTY(location, CLLocationCoordinate2D, OverlayMarker) {
     view.location = json ? [RCTConvert CLLocationCoordinate2D:json] : view.location;

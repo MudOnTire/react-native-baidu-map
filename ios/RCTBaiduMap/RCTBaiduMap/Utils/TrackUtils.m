@@ -45,7 +45,7 @@
     return dataArray;
 }
 
-+ (void)setAllinVisibleRange:(BaiduMapView *)mapView pointArray:(NSArray *)points
++ (void)setVisualRange:(BaiduMapView *)mapView pointArray:(NSArray *)points
 {
     if (points.count == 0) {
         return;

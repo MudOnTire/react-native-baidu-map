@@ -27,15 +27,15 @@ export default class Polyline extends Component {
 
   static defaultProps = {
     points: [{
-      lat: 0 + '',
-      lng: 0 + ''
+      latitude: 0,
+      longitude: 0
     },{
-       lat: 0 + '',
-       lng: 0 + ''
+       latitude: 0,
+       longitude: 0
     }],
     color: 'FF00FF44',
     width: 8,
-    visible: true
+    visible: false
   };
 
   constructor() {

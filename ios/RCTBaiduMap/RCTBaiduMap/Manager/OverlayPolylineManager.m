@@ -16,6 +16,7 @@ RCT_EXPORT_MODULE(BaiduMapOverlayPolyline)
 RCT_EXPORT_VIEW_PROPERTY(points, NSArray*)
 RCT_EXPORT_VIEW_PROPERTY(color, NSString)
 RCT_EXPORT_VIEW_PROPERTY(width, float)
+RCT_EXPORT_VIEW_PROPERTY(visible, BOOL)
 
 - (UIView *)view {
     OverlayPolyline *view = [[OverlayPolyline alloc] init];

@@ -200,8 +200,26 @@ public class OverlayMarker extends View implements OverlayView {
                     .setOldController(imageHolder.getController())
                     .build();
             imageHolder.setController(controller);
+
+            if (loadingImage) {
+                new Thread(() -> {
+                    while (loadingImage) {
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {
+                            break;
+                        }
+                    }
+                    if(marker != null && iconBitmapDescriptor != null){
+                        marker.setIcon(iconBitmapDescriptor);
+                    }
+                }).start();
+            }
         } else {
             iconBitmapDescriptor = getBitmapDescriptorByName(uri);
+            if(marker != null && iconBitmapDescriptor != null){
+                marker.setIcon(iconBitmapDescriptor);
+            }
         }
     }
 
@@ -264,8 +282,6 @@ public class OverlayMarker extends View implements OverlayView {
 
     private BitmapDescriptor getBitmapDescriptorByName(String name) {
         int resId = getDrawableResourceByName(name);
-        //Bitmap bitmap = zoomImg(BitmapFactory.decodeResource(getResources(), resId), 50, 50);
         return BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), resId));
-        //return BitmapDescriptorFactory.fromResource(getDrawableResourceByName(name));
     }
 }

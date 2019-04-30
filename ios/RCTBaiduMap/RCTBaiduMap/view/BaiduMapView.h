@@ -18,16 +18,15 @@
 #import <BaiduMapAPI_Map/BMKCircle.h>
 #import <UIKit/UIKit.h>
 #import "JMMarkerAnnotation.h"
+#import "JMPinAnnotationView.h"
 
 @interface BaiduMapView : BMKMapView <BMKMapViewDelegate>
 
 @property (nonatomic,copy) RCTBubblingEventBlock onChange;
 @property (nonatomic,assign) BOOL zoomControlsVisible;
-@property (nonatomic,strong) NSArray *trackPoints;  //轨迹数组
-@property (nonatomic,strong) NSArray *tracePoints;  //追踪数组
-@property (nonatomic,assign) BOOL showTrack;
+@property (nonatomic,strong) NSArray *visualRange;
 
-- (void)updateAnnotationView:(BMKPinAnnotationView *)annotationView annotation:(JMMarkerAnnotation *)annotation dataDic:(NSDictionary *)dataDic;
+- (void)updateAnnotationView:(JMPinAnnotationView *)annotationView annotation:(JMMarkerAnnotation *)annotation dataDic:(NSDictionary *)dataDic;
 
 - (void)removeBaiduOverlay:(NSNotification *)noti;
 
@@ -37,7 +36,7 @@
 - (void)setMarker:(NSDictionary *)Options;
 - (void)setMarkers:(NSArray *)markers;
 
-- (void)setTrackPlayInfo:(NSDictionary *)infoDic;
+- (void)setCorrectPerspective:(NSDictionary *)infoDic;
 
 - (void)setInfoWindows:(NSDictionary *)infoDic;
 
