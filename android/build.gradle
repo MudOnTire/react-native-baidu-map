@@ -58,7 +58,7 @@ signing {
 
 dependencies {
     compileOnly 'com.facebook.react:react-native:+'
-    implementation files('libs/BaiduLBS_Android.jar')
+    implementation project(':map_baidu_lib')
     compileOnly files('src/main/assets')
 }
 
