@@ -61,6 +61,12 @@ public class OverlayMarkerManager extends SimpleViewManager<OverlayMarker> {
         overlayMarker.setFlat(flat);
     }
 
+    @ReactProp(name = "visible")
+    public void setVisible(OverlayMarker overlayMarker, boolean visible) {
+        overlayMarker.setVisible(visible);
+    }
+
+
     @ReactProp(name = "infoWindow")
     public void setInfoWindowContent(OverlayMarker overlayMarker, ReadableMap position){
 

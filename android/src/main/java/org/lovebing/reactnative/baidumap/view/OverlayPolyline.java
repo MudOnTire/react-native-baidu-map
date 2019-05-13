@@ -11,7 +11,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.baidu.mapapi.map.BaiduMap;
@@ -19,6 +18,7 @@ import com.baidu.mapapi.map.Polyline;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +30,7 @@ public class OverlayPolyline extends View implements OverlayView {
     private Polyline polyline;
     private int color = 0xAAFF0000;
     private int width = 8;
+    private boolean visible = true;
 
     public OverlayPolyline(Context context) {
         super(context);
@@ -53,9 +54,9 @@ public class OverlayPolyline extends View implements OverlayView {
     }
 
     public void setPoints(List<LatLng> points) {
-        Log.i("setPoints","更新了点：" + points.size() + " ,polyline:" + polyline);
+        //Log.i("setPoints","更新了点：" + points.size() + " ,polyline:" + polyline);
         this.points = points;
-        if (polyline != null) {
+        if (polyline != null && points.size() >= 2) {
             polyline.setPoints(points);
         }
     }
@@ -65,6 +66,7 @@ public class OverlayPolyline extends View implements OverlayView {
     }
 
     public void setColor(int color) {
+        //Log.i("OverlayPolyline","visible:" + color);
         this.color = color;
         if (polyline != null) {
             polyline.setColor(color);
@@ -72,20 +74,34 @@ public class OverlayPolyline extends View implements OverlayView {
     }
 
     public void setVisible(boolean visible){
+        //Log.i("OverlayPolyline","visible:" + visible);
+        this.visible = visible;
         if (polyline != null){
             polyline.setVisible(visible);
         }
     }
 
     public void setWidth(int width){
+        //Log.i("OverlayPolyline","width:" + width);
         this.width = width;
+        if (polyline != null){
+            polyline.setWidth(width);
+        }
     }
 
     @Override
     public void addTopMap(BaiduMap baiduMap) {
+        //Log.i("OverlayPolyline","添加画线的覆盖物");
+        PolylineOptions options = new PolylineOptions().width(width) //getWidth()
+                .color(color).visible(visible);
         if(points.size() >=2){
-            PolylineOptions options = new PolylineOptions().width(width) //getWidth()
-                    .color(color).points(points);
+            options.points(points);
+            polyline = (Polyline) baiduMap.addOverlay(options);
+        } else {
+            List<LatLng> defaultPoints = new ArrayList<>();
+            defaultPoints.add(new LatLng(39.916927,116.404269));
+            defaultPoints.add(new LatLng(39.916927,116.404269));
+            options.points(defaultPoints);
             polyline = (Polyline) baiduMap.addOverlay(options);
         }
     }

@@ -123,6 +123,7 @@ public class GeolocationModule extends BaseModule
     //逆地理编码（即采集到的原始GPS坐标转地址）
     @ReactMethod
     public void reverseGeoCodeGPS(double lat, double lng) {
+        Log.i("ReverseGeoCode","请求了逆编码");
         getGeoCoder().reverseGeoCode(new ReverseGeoCodeOption()
                 .location(getBaiduCoorFromGPSCoor(new LatLng(lat, lng))));
     }
@@ -180,6 +181,7 @@ public class GeolocationModule extends BaseModule
             params.putString("district", addressComponent.district);
             params.putString("street", addressComponent.street);
             params.putString("streetNumber", addressComponent.streetNumber);
+            Log.i("ReverseGeoCode","地址：" + result.getAddress());
             //获取周边POI点，暂时用不到
 //            WritableArray list = Arguments.createArray();
 //            List<PoiInfo> poiList = result.getPoiList();

@@ -11,7 +11,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.support.annotation.Nullable;
@@ -49,6 +48,7 @@ public class OverlayMarker extends View implements OverlayView {
     private LatLng position;
     private Float rotate;
     private Boolean flat;
+    private Boolean visible;
     private Boolean perspective;
     private BitmapDescriptor iconBitmapDescriptor;
     private Marker marker;
@@ -165,6 +165,13 @@ public class OverlayMarker extends View implements OverlayView {
         }
     }
 
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
+        if (marker != null) {
+            marker.setVisible(visible);
+        }
+    }
+
     public Boolean getPerspective() {
         return perspective;
     }
@@ -193,8 +200,26 @@ public class OverlayMarker extends View implements OverlayView {
                     .setOldController(imageHolder.getController())
                     .build();
             imageHolder.setController(controller);
+
+            if (loadingImage) {
+                new Thread(() -> {
+                    while (loadingImage) {
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {
+                            break;
+                        }
+                    }
+                    if(marker != null && iconBitmapDescriptor != null){
+                        marker.setIcon(iconBitmapDescriptor);
+                    }
+                }).start();
+            }
         } else {
             iconBitmapDescriptor = getBitmapDescriptorByName(uri);
+            if(marker != null && iconBitmapDescriptor != null){
+                marker.setIcon(iconBitmapDescriptor);
+            }
         }
     }
 
@@ -257,22 +282,6 @@ public class OverlayMarker extends View implements OverlayView {
 
     private BitmapDescriptor getBitmapDescriptorByName(String name) {
         int resId = getDrawableResourceByName(name);
-        //Bitmap bitmap = zoomImg(BitmapFactory.decodeResource(getResources(), resId), 50, 50);
         return BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), resId));
-        //return BitmapDescriptorFactory.fromResource(getDrawableResourceByName(name));
-    }
-
-    private Bitmap zoomImg(Bitmap bm, int newWidth, int newHeight) {
-        //获得图片的宽高
-        int width = bm.getWidth();
-        int height = bm.getHeight();
-        //计算缩放比例
-        float scaleWidth = ((float) newWidth) / width;
-        float scaleHeight = ((float) newHeight) / height;
-        //取得想要缩放的matrix参数
-        Matrix matrix = new Matrix();
-        matrix.postScale(scaleWidth, scaleHeight);
-        //得到新的图片
-        return Bitmap.createBitmap(bm, 0, 0, width, height, matrix, true);
     }
 }
