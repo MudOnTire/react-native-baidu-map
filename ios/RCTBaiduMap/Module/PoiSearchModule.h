@@ -7,12 +7,16 @@
 //
 
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
+#import <BaiduMapAPI_Search/BMKSuggestionSearch.h>
 #import "BaseModule.h"
 #import "BaiduMapViewManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PoiSearchModule : BaseModule <BMKPoiSearchDelegate>
+@interface PoiSearchModule : BaseModule <BMKPoiSearchDelegate,BMKSuggestionSearchDelegate>
+
+@property (nonatomic, assign) NSInteger poiSearchCount;
+@property (nonatomic, assign) NSInteger suggestionSearchCount;
 
 - (void)sendEvent:(NSString *)name body:(NSMutableDictionary *)body;
 

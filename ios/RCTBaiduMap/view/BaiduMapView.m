@@ -99,6 +99,7 @@
     if (_annotationArray == nil) {
         _annotationArray = [[NSMutableArray alloc] init];
     }
+    NSLog(@"---------->%@", markers);
 
     if (markers != nil) {
         for (NSInteger i = 0, markersMax = markersCount; i < markersMax; i++)  {
@@ -164,6 +165,7 @@
 - (void)updateAnnotationView:(JMPinAnnotationView *)annotationView annotation:(JMMarkerAnnotation *)annotation dataDic:(NSDictionary *)dataDic
 {
     if (!annotation) return;
+    NSLog(@"updateAnnotationView:%@", dataDic);
 
     CLLocationCoordinate2D coor = annotation.coordinate;
     NSString *title = annotation.title;
