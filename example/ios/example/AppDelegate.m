@@ -31,7 +31,8 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
-  [BaiduMapViewManager initSDK:@"sIMQlfmOXhQmPLF1QMh4aBp8zZO9Lb2A"];
+  [BaiduMapViewManager initSDK:@"ohoabzkiHzDiKrvWGRngQtCCntwjXc8f"];
+
   return YES;
 }
 

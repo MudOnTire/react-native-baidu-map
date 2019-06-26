@@ -9,7 +9,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Image, Text, View, Dimensions, Button,TouchableOpacity} from 'react-native';
-import { MapView, MapTypes, Geolocation, Overlay } from 'react-native-baidu-map-jm';
+import { MapView, MapTypes, Geolocation, Overlay, Location} from 'react-native-baidu-map-jm';
 const {height, width} = Dimensions.get('window');
 
 export default class App extends Component<Props> {
@@ -79,7 +79,21 @@ export default class App extends Component<Props> {
         }else{
             this.getMyLocation();
         }
+    }
 
+    //自定定位
+    autoLocation() {
+        Location.config("baidukey").then(data=>{
+                                   if (data.errcode == 0) {
+                                   Location.startUpdatingLocation().then(data=>{
+                                                                        console.log('startUpdatingLocation', data);
+                                                                         }).catch(e=>{
+                                                                                  console.log('startUpdatingLocation', '失败:' + e);
+                                                                                  });
+                                   }
+                                   }).catch(e=>{
+                                            console.log('config', '失败:' + e);
+                                            });
     }
 
     //查询车的位置

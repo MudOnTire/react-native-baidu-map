@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2FD39322C314D0002F35F7 /* BaiduLocationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2FD39122C314CF002F35F7 /* BaiduLocationModule.m */; };
 		0CCB58A3228BE83C00768375 /* JMArc.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCB5869228BE83C00768375 /* JMArc.m */; };
 		0CCB58A4228BE83C00768375 /* JMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCB586B228BE83C00768375 /* JMCircle.m */; };
 		0CCB58A5228BE83C00768375 /* PoiSearchModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCB586F228BE83C00768375 /* PoiSearchModule.m */; };
@@ -49,6 +50,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C2FD39122C314CF002F35F7 /* BaiduLocationModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaiduLocationModule.m; path = "../../../example/ios/Pods/react-native-baidu-map-jm/BaiduLocationModule.m"; sourceTree = "<group>"; };
+		0C2FD39222C314CF002F35F7 /* BaiduLocationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaiduLocationModule.h; path = "../../../example/ios/Pods/react-native-baidu-map-jm/BaiduLocationModule.h"; sourceTree = "<group>"; };
 		0CCB5869228BE83C00768375 /* JMArc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMArc.m; sourceTree = "<group>"; };
 		0CCB586A228BE83C00768375 /* JMPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMPolygon.h; sourceTree = "<group>"; };
 		0CCB586B228BE83C00768375 /* JMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMCircle.m; sourceTree = "<group>"; };
@@ -132,22 +135,24 @@
 		0CCB5868228BE83C00768375 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				0C2FD39222C314CF002F35F7 /* BaiduLocationModule.h */,
+				0C2FD39122C314CF002F35F7 /* BaiduLocationModule.m */,
 				0CCB5869228BE83C00768375 /* JMArc.m */,
 				0CCB586A228BE83C00768375 /* JMPolygon.h */,
 				0CCB586B228BE83C00768375 /* JMCircle.m */,
 				0CCB586C228BE83C00768375 /* BaseModule.h */,
 				0CCB586D228BE83C00768375 /* JMMarkerAnnotation.h */,
 				0CCB586E228BE83C00768375 /* GeolocationModule.h */,
+				0CCB5875228BE83C00768375 /* GeolocationModule.m */,
+				0CCB5878228BE83C00768375 /* PoiSearchModule.h */,
 				0CCB586F228BE83C00768375 /* PoiSearchModule.m */,
 				0CCB5870228BE83C00768375 /* JMPolyline.h */,
 				0CCB5871228BE83C00768375 /* Stroke.h */,
 				0CCB5872228BE83C00768375 /* JMArc.h */,
 				0CCB5873228BE83C00768375 /* JMCircle.h */,
 				0CCB5874228BE83C00768375 /* JMPolygon.m */,
-				0CCB5875228BE83C00768375 /* GeolocationModule.m */,
 				0CCB5876228BE83C00768375 /* JMMarkerAnnotation.m */,
 				0CCB5877228BE83C00768375 /* BaseModule.m */,
-				0CCB5878228BE83C00768375 /* PoiSearchModule.h */,
 				0CCB5879228BE83C00768375 /* JMPolyline.m */,
 				0CCB587A228BE83C00768375 /* Stroke.m */,
 			);
@@ -342,6 +347,7 @@
 				0CCB58BA228BE83C00768375 /* OverlayPolygon.m in Sources */,
 				0CCB58B4228BE83C00768375 /* OverlayArc.m in Sources */,
 				0CCB58B8228BE83C00768375 /* OverlayMarker.m in Sources */,
+				0C2FD39322C314D0002F35F7 /* BaiduLocationModule.m in Sources */,
 				0CCB58B6228BE83C00768375 /* OverlayCircle.m in Sources */,
 				0CCB58AA228BE83C00768375 /* JMPolyline.m in Sources */,
 				0CCB58AD228BE83C00768375 /* OverlayArcManager.m in Sources */,

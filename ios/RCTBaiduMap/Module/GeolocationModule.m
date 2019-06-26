@@ -7,6 +7,7 @@
 //
 
 #import "GeolocationModule.h"
+#import <BMKLocationkit/BMKLocationManager.h>
 
 @implementation GeolocationModule {
     BMKPointAnnotation* _annotation;
@@ -205,6 +206,17 @@ RCT_EXPORT_METHOD(reverseGeoCodeGPS:(double)lat lng:(double)lng) {
     
 -(void)sendEvent:(NSString *)name body:(NSMutableDictionary *)body {
     [self.bridge.eventDispatcher sendDeviceEventWithName:name body:body];
+}
+
+#pragma mark - BMKLocationManager
+
+static BMKLocationManager *pLocationManager;
+
+- (BMKGeoCodeSearch *)getGeocodesearch{
+    if(geoCodeSearch == nil) {
+        geoCodeSearch = [[BMKGeoCodeSearch alloc]init];
+    }
+    return geoCodeSearch;
 }
 
 @end
