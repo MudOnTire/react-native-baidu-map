@@ -85,7 +85,7 @@ Podfile 增加
 
 ### Usage 使用方法
 
-    import { MapView, MapTypes, Geolocation, Overlay } from 'react-native-baidu-map'
+    import { MapView, MapTypes, Geolocation, Overlay, Location} from 'react-native-baidu-map'
 
 #### MapView Props 属性
 | Prop                    | Type  | Default  | Description
@@ -96,6 +96,12 @@ Podfile 增加
 | mapType                 | number| 1        |
 | zoom                    | number| 10       |
 | center                  | object| null     | {latitude: 0, longitude: 0}
+| buildingsEnabled        | bool  | true     | 
+| overlookEnabled         | bool  | true     | 
+| trackPlayInfo           | object| null     | 播放轨迹信息数据(已无效)
+| visualRange             | array | []       | 
+| infoWindows             | object| undefined| 无效
+| correctPerspective      | object| undefined| Android only
 | onMapStatusChangeStart  | func  | undefined| Android only
 | onMapStatusChange       | func  | undefined|
 | onMapStatusChangeFinish | func  | undefined| Android only
@@ -104,6 +110,7 @@ Podfile 增加
 | onMapDoubleClick        | func  | undefined|
 | onMarkerClick           | func  | undefined|
 | onMapPoiClick           | func  | undefined|
+| onBubbleOfMarkerClick   | func  | undefined| Android only
 
 #### Overlay 覆盖物
     const { Marker, Arc, Circle, Polyline, Polygon, Text, InfoWindow } = Overlay;
@@ -111,44 +118,47 @@ Podfile 增加
 ##### Marker Props 属性
 | Prop                    | Type  | Default  | Description
 | ----------------------- |:-----:| :-------:| -------
+| tag                     | int   | -1       | 用于多个Marker时绑定InfoWindow(Component)
 | title                   | string| null     |
 | location                | object| {latitude: 0, longitude: 0}    |
-| perspective             | bool  | null     |
-| flat                    | bool  | null     |
-| rotate                  | float | 0        |
-| icon                    | any   | null     | icon图片，同 <Image> 的 source 属性
 | alpha                   | float | 1        |
+| rotate                  | float | 0        |
+| flat                    | bool  | null     |
+| icon                    | any   | null     | icon图片，同 <Image> 的 source 属性
+| visible                 | bool  | true     |
+| infoWindow              | shape | null     | 若用此InfoWindow则无需绑定tag
 
 ##### Arc Props 属性
 | Prop                    | Type  | Default  | Description
 | ----------------------- |:-----:| :-------:| -------
-| color                   | string| AA00FF00 |
-| width                   | int   | 4        |
+| color                   | string| FFFF0088 |
+| width                   | int   | 1        |
 | poins                   | array | [{latitude: 0, longitude: 0}, {latitude: 0, longitude: 0}, {latitude: 0, longitude: 0}] | 数值长度必须为 3
 
 ##### Circle Props 属性
 | Prop                    | Type  | Default  | Description
 | ----------------------- |:-----:| :-------:| -------
-| radius                  | int   | 1400     |
-| fillColor               | string| 000000FF |
-| stroke                  | object| {width: 5, color: 'AA000000'} |
+| radius                  | int   |          |
+| fillColor               | string|          |
+| stroke                  | object| {width: 2, color: 'AA0000FF'} |
 | center                  | object| {latitude: 0, longitude: 0}       |
 
 ##### Polyline Props 属性
 | Prop                    | Type  | Default  | Description
 | ----------------------- |:-----:| :-------:| -------
-| points                  | array | [{latitude: 0, longitude: 0}]     |
-| color                   | string| AAFF0000 |
+| points                  | array | [{latitude: 0, longitude: 0},{latitude: 0, longitude: 0}]     |
+| width                   | int   | 8        |
+| visible                 | bool  | false    |
 
 ##### Polygon Props 属性
 | Prop                    | Type  | Default  | Description
 | ----------------------- |:-----:| :-------:| -------
 | points                  | array | [{latitude: 0, longitude: 0}]     |
-| fillColor               | string| AAFFFF00 |
-| stroke                  | object| {width: 5, color: 'AA00FF00'} |
+| fillColor               | string|          |
+| stroke                  | object| {width: 2, color: 'AA00FF00'} |
 
 
-##### Text Props 属性
+##### Text Props 属性（iOS无此属性）
 | Prop                    | Type  | Default  | Description
 | ----------------------- |:-----:| :-------:| -------
 | text                    | string|          |
@@ -162,7 +172,10 @@ Podfile 增加
 | Prop                    | Type  | Default  | Description
 | ----------------------- |:-----:| :-------:| -------
 | location                | object|{latitude: 0, longitude: 0}
-| visible                 | bool  | false    | 点击 marker 后才能设为 true 
+| visible                 | bool  | false    | 
+| title                   | string| ""       |
+| width                   | int   |          |
+| height                  | int   |          |
 
 <MapView>
     <Marker/>
@@ -184,4 +197,17 @@ Podfile 增加
 | Promise reverseGeoCodeGPS(double lat, double lng) |  `{"address": "", "province": "", "cityCode": "", "city": "", "district": "", "streetName": "", "streetNumber": ""}`
 | Promise geocode(String city, String addr) | {"latitude": 0.0, "longitude": 0.0}
 | Promise getCurrentPosition() | IOS: `{"latitude": 0.0, "longitude": 0.0, "address": "", "province": "", "cityCode": "", "city": "", "district": "", "streetName": "", "streetNumber": ""}` Android: `{"latitude": 0.0, "longitude": 0.0, "direction": -1, "altitude": 0.0, "radius": 0.0, "address": "", "countryCode": "", "country": "", "province": "", "cityCode": "", "city": "", "district": "", "street": "", "streetNumber": "", "buildingId": "", "buildingName": ""}`
+
+#### Geolocation Methods
+
+| Method                    | Result
+| ------------------------- | -------
+| Promise config(String key) | `{"errcode": "0", "errmsg": "Success"}`
+| locationTimeout(int timeout) |  null
+| allowsBackground(bool allows) | null
+| Promise startUpdatingLocation() | `{"method": "onLocationModuleUpdateLocation", "latitude": 0.0, "longitude": "0.0"}` or `{"method": "onLocationModuleFail", "errcode": 0, "errmsg": "定位发生错误"}` or `{"method": "onLocationModuleChangeAuthorization", "state": 0}` or `{"method": "onLocationModuleUpdateNetworkState", "state": 0}`
+| stopUpdatingLocation() | null
+| Promise startUpdatingHeading() |  `{"magneticHeading": 0.0, "trueHeading": 0.0, "headingAccuracy": 0.0, "timestamp": 0.0}`
+| stopUpdatingHeading() | null
+
 
