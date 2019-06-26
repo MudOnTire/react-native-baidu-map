@@ -3953,10 +3953,10 @@ react-is@^16.6.3:
   version "16.8.1"
   resolved "http://registry.npm.taobao.org/react-is/download/react-is-16.8.1.tgz#a80141e246eb894824fb4f2901c0c50ef31d4cdb"
 
-react-native-baidu-map-jm@^1.0.2:
-  version "1.0.2"
-  resolved "http://registry.npm.taobao.org/react-native-baidu-map-jm/download/react-native-baidu-map-jm-1.0.2.tgz#097f0deee6d1ae1fc6098996c3ba9d770aececdf"
-  integrity sha1-CX8N7ubRrh/GCYmWw7qddwrs7N8=
+react-native-baidu-map-jm@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.npm.taobao.org/react-native-baidu-map-jm/download/react-native-baidu-map-jm-1.0.9.tgz?cache=0&sync_timestamp=1561520300795&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-native-baidu-map-jm%2Fdownload%2Freact-native-baidu-map-jm-1.0.9.tgz#440ee0d577e9db37065c7fd5c1be4f7d1d7f1e78"
+  integrity sha1-RA7g1Xfp2zcGXH/Vwb5PfR1/Hng=
 
 react-native@0.57.8:
   version "0.57.8"

@@ -8,9 +8,14 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Image, Text, View, Dimensions, Button,TouchableOpacity} from 'react-native';
-import { MapView, MapTypes, Geolocation, Overlay, Location} from 'react-native-baidu-map-jm';
+import {Platform, StyleSheet, Image, Text, View, Dimensions, Button,TouchableOpacity,NativeModules,NativeEventEmitter} from 'react-native';
+import { MapView, MapTypes, Geolocation, Overlay} from 'react-native-baidu-map-jm';
 const {height, width} = Dimensions.get('window');
+const {
+    BaiduLocationModule
+} = NativeModules;
+
+const locationListener = new NativeEventEmitter(BaiduLocationModule);
 
 export default class App extends Component<Props> {
     state = {
@@ -40,6 +45,14 @@ export default class App extends Component<Props> {
     };
 
     componentWillMount() {
+        locationListener.addListener(BaiduLocationModule.kLocationModuleCheckPermission, (reminder) => {
+                                           console.log('kLocationModuleCheckPermission---->', reminder);
+                                     BaiduLocationModule.startUpdatingLocation();
+                                          });
+        locationListener.addListener(BaiduLocationModule.kLocationModuleUpdateLocation, (reminder) => {
+                                     console.log('kLocationModuleUpdateLocation---->', reminder);
+                                     });
+        BaiduLocationModule.config(null);
     }
 
     componentDidMount(){
@@ -68,32 +81,12 @@ export default class App extends Component<Props> {
     }
 
     location(isCar){
-        if(isCar) {
-            console.log('定位车辆位置');
-        } else {
-            console.log('定位当前位置');
-        }
-        this.setState({isCarLocation:isCar});
-        if(isCar){
-            this.getCarLocation();
-        }else{
-            this.getMyLocation();
-        }
+        this.autoLocation();
     }
 
     //自定定位
     autoLocation() {
-        Location.config("baidukey").then(data=>{
-                                   if (data.errcode == 0) {
-                                   Location.startUpdatingLocation().then(data=>{
-                                                                        console.log('startUpdatingLocation', data);
-                                                                         }).catch(e=>{
-                                                                                  console.log('startUpdatingLocation', '失败:' + e);
-                                                                                  });
-                                   }
-                                   }).catch(e=>{
-                                            console.log('config', '失败:' + e);
-                                            });
+
     }
 
     //查询车的位置
