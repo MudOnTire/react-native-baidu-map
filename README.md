@@ -196,14 +196,14 @@ Podfile 增加
 
 #### Geolocation Methods
 
-| Method                    | Result
-| ------------------------- | -------
-| Promise config(String key) | `{"errcode": "0", "errmsg": "Success"}`
-| locationTimeout(int timeout) |  null
-| allowsBackground(bool allows) | null
-| Promise startUpdatingLocation() | `{"method": "onLocationModuleUpdateLocation", "latitude": 0.0, "longitude": "0.0"}` or `{"method": "onLocationModuleFail", "errcode": 0, "errmsg": "定位发生错误"}` or `{"method": "onLocationModuleChangeAuthorization", "state": 0}` or `{"method": "onLocationModuleUpdateNetworkState", "state": 0}`
-| stopUpdatingLocation() | null
-| Promise startUpdatingHeading() |  `{"magneticHeading": 0.0, "trueHeading": 0.0, "headingAccuracy": 0.0, "timestamp": 0.0}`
-| stopUpdatingHeading() | null
+| Method                    | Listener | Result
+| ------------------------- | -------  | ------
+| Promise config(String key) | kLocationModuleCheckPermission |`{"errcode": "0", "errmsg": "Success"}`
+| locationTimeout(int timeout) | null | null
+| allowsBackground(bool allows) | null |null
+| startUpdatingLocation() | kLocationModuleUpdateLocation、kLocationModuleFail、kLocationModuleChangeAuthorization、kLocationModuleUpdateNetworkState | `{"method": "onLocationModuleUpdateLocation", "latitude": 0.0, "longitude": "0.0"}` or `{"method": "onLocationModuleFail", "errcode": 0, "errmsg": "定位发生错误"}` or `{"method": "onLocationModuleChangeAuthorization", "state": 0}` or `{"method": "onLocationModuleUpdateNetworkState", "state": 0}`
+| stopUpdatingLocation() | null | null
+| startUpdatingHeading() | kLocationModuleUpdateHeading |  `{"magneticHeading": 0.0, "trueHeading": 0.0, "headingAccuracy": 0.0, "timestamp": 0.0}`
+| stopUpdatingHeading() | null | null
 
 
