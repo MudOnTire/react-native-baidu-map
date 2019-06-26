@@ -38,8 +38,8 @@ export default {
     locationTimeout(time) {
         _module.locationTimeout(time);
     },
-    allowsBackground() {
-        _module.allowsBackground
+    allowsBackground(allows) {
+        _module.allowsBackground(allows);
     },
     startUpdatingLocation() {
         return new Promise((resolve, reject) => {
