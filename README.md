@@ -7,10 +7,6 @@ Baidu Map SDK modules and view for React Native(Android & IOS), support react na
 
 百度地图 React Native 模块，支持 react native 0.57+，已更新到最新的百度地图SDK版本。
 
-Overlay for IOS 已完成大部分，暂时可用，InfoWindow在iOS中调整归属为Marker属性，Text未实现。
-
-Marker icon 的实现参考了 https://github.com/react-native-community/react-native-maps 的相关代码。
-
 ![IOS](https://raw.githubusercontent.com/Eafy/react-native-baidu-map-jm/master/images/ios.jpg)
 ![Android](https://raw.githubusercontent.com/Eafy/react-native-baidu-map-jm/master/images/android.jpg)
 
