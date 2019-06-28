@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/Eafy/react-native-baidu-map-jm.git", :tag => "#{s.version}" }
 
-  s.source_files  = "RCTBaiduMap/**/*.{h,m}"
+  s.source_files  = "ios/RCTBaiduMap/**/*.{h,m}"
   s.exclude_files = ""
   s.frameworks = "CoreLocation", "QuartzCore", "OpenGLES", "SystemConfiguration", "CoreGraphics", "Security", "CoreTelephony" 
   s.libraries = "c++", "sqlite3", "ssl", "crypto"
