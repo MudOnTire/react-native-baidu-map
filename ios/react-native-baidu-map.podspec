@@ -16,15 +16,15 @@ Pod::Spec.new do |s|
   Baidu Map views and modules for React Native
                    DESC
 
-  s.homepage     = "https://github.com/Eafy/react-native-baidu-map-jm"
+  s.homepage     = "https://github.com/MudOnTire/react-native-baidu-map.git"
   s.screenshots  = "https://raw.githubusercontent.com/lovebing/react-native-baidu-map/master/images/android.jpg", "https://raw.githubusercontent.com/lovebing/react-native-baidu-map/master/images/ios.jpg"
 
   s.license      = "MIT"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
-  s.author             = { "Eafy" => "lizhijian_21@163.com" }
-  # s.authors            = { "Eafy" => "lizhijian_21@163.com" }
-  # s.social_media_url   = "https://github.com/Eafy"
+  s.author             = { "MudOnTire" => "895157882.com" }
+  # s.authors            = { "MudOnTire" => "895157882.com" }
+  # s.social_media_url   = "https://github.com/MudOnTire"
 
   s.platform     = :ios, "9.0"
 
@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/Eafy/react-native-baidu-map-jm.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/MudOnTire/react-native-baidu-map.git", :tag => "#{s.version}" }
 
   s.source_files  = "ios/RCTBaiduMap/**/*.{h,m}"
   s.exclude_files = ""
