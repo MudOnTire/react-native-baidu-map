@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   s.libraries = "c++", "sqlite3", "ssl", "crypto"
 
   s.requires_arc = true
-  s.dependency "React"
+  s.dependency 'React', '0.57.5'
   s.dependency 'BaiduMapKit', '4.2.1'
   s.dependency 'BMKLocationKit', '1.3.0.2'
 end
