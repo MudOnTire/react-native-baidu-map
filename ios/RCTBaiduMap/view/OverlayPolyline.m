@@ -7,7 +7,6 @@
 //
 
 #import "OverlayPolyline.h"
-#import <React/RCTConvert+CoreLocation.h>
 
 @interface OverlayPolyline ()
 
@@ -47,7 +46,7 @@
     _points = points;
     if (points.count == 0) return;
 
-    CLLocationCoordinate2D *coords = malloc(sizeof(CLLocationCoordinate2D) * points.count);
+    CLLocationCoordinate2D *coords = (CLLocationCoordinate2D *)malloc(sizeof(CLLocationCoordinate2D) * points.count);
     for (int i = 0; i < points.count; i++) {
         CLLocationCoordinate2D coor = CLLocationCoordinate2DMake([[[points objectAtIndex:i] objectForKey:@"latitude"] doubleValue], [[[points objectAtIndex:i] objectForKey:@"longitude"] doubleValue]);
         coords[i] = coor;

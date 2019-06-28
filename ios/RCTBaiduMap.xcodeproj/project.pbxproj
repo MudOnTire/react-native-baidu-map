@@ -35,6 +35,7 @@
 		0CCB58BB228BE83C00768375 /* OverlayPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCB589D228BE83C00768375 /* OverlayPolyline.m */; };
 		0CCB58BC228BE83C00768375 /* BaiduMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCB589F228BE83C00768375 /* BaiduMapView.m */; };
 		0CCB58BD228BE83C00768375 /* TrackInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCB58A1228BE83C00768375 /* TrackInfoView.m */; };
+		5C9A0B9D23FA5E7BD3ACD1B8 /* libPods-RCTBaiduMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 321E0D959C63F46BB91D1D72 /* libPods-RCTBaiduMap.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -107,7 +108,10 @@
 		0CCB58A0228BE83C00768375 /* OverlayMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayMarker.h; sourceTree = "<group>"; };
 		0CCB58A1228BE83C00768375 /* TrackInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackInfoView.m; sourceTree = "<group>"; };
 		0CCB58A2228BE83C00768375 /* OverlayPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayPolygon.h; sourceTree = "<group>"; };
+		321E0D959C63F46BB91D1D72 /* libPods-RCTBaiduMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RCTBaiduMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB9BE04D420C026AC0C928B9 /* Pods-RCTBaiduMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCTBaiduMap.release.xcconfig"; path = "Target Support Files/Pods-RCTBaiduMap/Pods-RCTBaiduMap.release.xcconfig"; sourceTree = "<group>"; };
 		EF3C22561CC2C30D0099E9B6 /* libRCTBaiduMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTBaiduMap.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F17C995E8517AAED074CCF9B /* Pods-RCTBaiduMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCTBaiduMap.debug.xcconfig"; path = "Target Support Files/Pods-RCTBaiduMap/Pods-RCTBaiduMap.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C9A0B9D23FA5E7BD3ACD1B8 /* libPods-RCTBaiduMap.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,8 +225,18 @@
 		56ACD5443909B8ED0B517164 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				321E0D959C63F46BB91D1D72 /* libPods-RCTBaiduMap.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D050F812E91E8C507F8821F2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F17C995E8517AAED074CCF9B /* Pods-RCTBaiduMap.debug.xcconfig */,
+				BB9BE04D420C026AC0C928B9 /* Pods-RCTBaiduMap.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		EF3C224D1CC2C30D0099E9B6 = {
@@ -230,6 +245,7 @@
 				0CCB5867228BE83C00768375 /* RCTBaiduMap */,
 				EF3C22571CC2C30D0099E9B6 /* Products */,
 				56ACD5443909B8ED0B517164 /* Frameworks */,
+				D050F812E91E8C507F8821F2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -455,10 +471,14 @@
 		};
 		EF3C22601CC2C30D0099E9B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F17C995E8517AAED074CCF9B /* Pods-RCTBaiduMap.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Pods/Headers/Public\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -471,10 +491,14 @@
 		};
 		EF3C22611CC2C30D0099E9B6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB9BE04D420C026AC0C928B9 /* Pods-RCTBaiduMap.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Pods/Headers/Public\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",

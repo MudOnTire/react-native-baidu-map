@@ -1,5 +1,4 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
 
 target 'example' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -21,7 +20,7 @@ target 'example' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'react-native-baidu-map-jm', : path => '../node_modules/react-native-baidu-map-jm'
+  pod 'react-native-baidu-map-jm', :podspec => '../node_modules/react-native-baidu-map-jm/ios/react-native-baidu-map-jm.podspec'
 
   target 'example-tvOSTests' do
     inherit! :search_paths
