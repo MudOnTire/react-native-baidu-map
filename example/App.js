@@ -42,17 +42,15 @@ export default class App extends Component<Props> {
              }
         }],
         isCarLocation:false,
+        infoWindow:{    //InfoWindow Mode 1，Link Marker 1
+            tag:1,
+            latitude:'39.916927',
+            longitude:'116.404269',
+            isShow:true,
+        }
     };
 
     componentWillMount() {
-        locationListener.addListener(BaiduLocationModule.kLocationModuleCheckPermission, (reminder) => {
-                                           console.log('kLocationModuleCheckPermission---->', reminder);
-                                     BaiduLocationModule.startUpdatingLocation();
-                                          });
-        locationListener.addListener(BaiduLocationModule.kLocationModuleUpdateLocation, (reminder) => {
-                                     console.log('kLocationModuleUpdateLocation---->', reminder);
-                                     });
-        BaiduLocationModule.config(null);
     }
 
     componentDidMount(){
@@ -81,12 +79,29 @@ export default class App extends Component<Props> {
     }
 
     location(isCar){
-        this.autoLocation();
+        if(isCar) {
+            console.log('定位车辆位置');
+        } else {
+            console.log('定位当前位置');
+        }
+        this.setState({isCarLocation:isCar});
+        if(isCar){
+            this.getCarLocation();
+        }else{
+            this.getMyLocation();
+        }
     }
 
     //自定定位
     autoLocation() {
-
+        locationListener.addListener(BaiduLocationModule.kLocationModuleCheckPermission, (reminder) => {
+                                     console.log('kLocationModuleCheckPermission---->', reminder);
+                                     BaiduLocationModule.startUpdatingLocation();
+                                     });
+        locationListener.addListener(BaiduLocationModule.kLocationModuleUpdateLocation, (reminder) => {
+                                     console.log('kLocationModuleUpdateLocation---->', reminder);
+                                     });
+        BaiduLocationModule.config(null);
     }
 
     //查询车的位置
@@ -166,6 +181,7 @@ export default class App extends Component<Props> {
           height={height}
           zoom={18}
           center={this.state.center}
+          infoWindows={this.state.infoWindow}
 
           onMapStatusChange={(params)=>{
 //            console.log("onMapStatusChange->params:" + params.target.longitude)
@@ -197,10 +213,11 @@ export default class App extends Component<Props> {
         >
             
           <Overlay.Marker
+            tag={0}
             title={this.state.markers[0].title}
             location={this.state.markers[0].location}
             icon={'icon_car'}
-            infoWindow={{
+            infoWindow={{   //InfoWindow Mode 0
               title:this.state.markers[0].title,
               visible:true,
               width:100,
@@ -210,16 +227,10 @@ export default class App extends Component<Props> {
           />
 
           <Overlay.Marker
+            tag={1}     //Link Infowindow Mode 1
             title={this.state.markers[1].title}
             location={this.state.markers[1].location}
             icon={'home_icon_locat'}
-            infoWindow={{
-              title:this.state.markers[1].title,
-              visible:true,
-              width:100,
-              height:40,
-              alpha:1.0
-            }}
           />
 
           <Overlay.Circle

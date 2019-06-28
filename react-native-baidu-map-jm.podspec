@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "react-native-baidu-map-jm"
-  s.version      = "1.1.6"
+  s.version      = "1.1.7"
   s.summary      = "Baidu Map for React Native"
 
   s.description  = <<-DESC
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.screenshots  = "https://raw.githubusercontent.com/lovebing/react-native-baidu-map/master/images/android.jpg", "https://raw.githubusercontent.com/lovebing/react-native-baidu-map/master/images/ios.jpg"
 
   s.license      = "MIT"
-  s.author             = { "Eafy" => "lizhijian_21@163.com" }
+  s.author       = { "Eafy" => "lizhijian_21@163.com" }
   s.platform     = :ios, "9.0"
 
   s.source       = { :git => "https://github.com/Eafy/react-native-baidu-map-jm.git", :tag => "#{s.version}" }

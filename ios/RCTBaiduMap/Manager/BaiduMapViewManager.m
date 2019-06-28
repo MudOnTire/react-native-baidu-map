@@ -129,45 +129,97 @@ RCT_CUSTOM_VIEW_PROPERTY(infoWindows, NSDictionary, BaiduMapView) {
 
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation {
     if ([annotation isKindOfClass:[JMMarkerAnnotation class]]) {
-        JMPinAnnotationView *annotationView = (JMPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"JMMarkerAnnotation"];
-        if (!annotationView) {
-            annotationView = [[JMPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"JMMarkerAnnotation"];
-        }
-//        annotationView.pinColor = BMKPinAnnotationColorPurple;
-//        annotationView.animatesDrop = YES;
-        annotationView.hidePaopaoWhenSingleTapOnMap = NO;
-        annotationView.hidePaopaoWhenDoubleTapOnMap = NO;
-        annotationView.hidePaopaoWhenTwoFingersTapOnMap = NO;
-        annotationView.hidePaopaoWhenSelectOthers = NO;
-        annotationView.hidePaopaoWhenDragOthers = NO;
-        annotationView.hidePaopaoWhenDrag = NO;
-
         JMMarkerAnnotation *markerAnnotation = (JMMarkerAnnotation *)annotation;
-        [(BaiduMapView *)mapView updateAnnotationView:annotationView annotation:markerAnnotation dataDic:nil];
+        if (markerAnnotation.tag >= 0 && markerAnnotation.infoWindow != nil) {  //自定义Infowindow
+            JMPinAnnotationView *annotationView = (JMPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"JMMarkerJMPinAnnotation"];
+            if (!annotationView) {
+                annotationView = [[JMPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"JMMarkerJMPinAnnotation"];
+            }
+            //        annotationView.pinColor = BMKPinAnnotationColorPurple;
+            //        annotationView.animatesDrop = YES;
+            annotationView.hidePaopaoWhenSingleTapOnMap = NO;
+            annotationView.hidePaopaoWhenDoubleTapOnMap = NO;
+            annotationView.hidePaopaoWhenTwoFingersTapOnMap = NO;
+            annotationView.hidePaopaoWhenSelectOthers = NO;
+            annotationView.hidePaopaoWhenDragOthers = NO;
+            annotationView.hidePaopaoWhenDrag = NO;
 
-        if (markerAnnotation.tag >= 0 && markerAnnotation.infoWindow != nil) {
-            NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"TrackInfoView" owner:nil options:nil];
-            TrackInfoView *popView = [nibContents lastObject];
-            if (popView) {
-                [popView setModelDic:markerAnnotation.infoWindow];
+            [(BaiduMapView *)mapView updateAnnotationView:annotationView annotation:markerAnnotation dataDic:nil];
 
-                BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:popView];
-                pView.frame = popView.bounds;
-                ((JMPinAnnotationView *)annotationView).paopaoView = pView;
+            if (markerAnnotation.tag >= 0 && markerAnnotation.infoWindow != nil) {
+                NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"TrackInfoView" owner:nil options:nil];
+                TrackInfoView *popView = [nibContents lastObject];
+                if (popView) {
+                    [popView setModelDic:markerAnnotation.infoWindow];
+
+                    BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc] initWithCustomView:popView];
+                    pView.frame = popView.bounds;
+                    ((JMPinAnnotationView *)annotationView).paopaoView = pView;
+                }
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [mapView selectAnnotation:annotation animated:YES];
+                });
+            }
+            return annotationView;
+        } else if (markerAnnotation.infoWindow != nil) {
+            BMKPinAnnotationView *annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"JMMarkerBMKPinAnnotation"];
+            if (!annotationView) {
+                annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"JMMarkerBMKPinAnnotation"];
+            }
+            annotationView.pinColor = BMKPinAnnotationColorPurple;
+            annotationView.animatesDrop = YES;
+            annotationView.hidePaopaoWhenSingleTapOnMap = YES;
+            annotationView.hidePaopaoWhenDoubleTapOnMap = YES;
+            annotationView.hidePaopaoWhenTwoFingersTapOnMap = YES;
+            annotationView.hidePaopaoWhenSelectOthers = YES;
+            annotationView.hidePaopaoWhenDragOthers = YES;
+
+            UIView * popView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[markerAnnotation.infoWindow objectForKey:@"width"] doubleValue], [[markerAnnotation.infoWindow objectForKey:@"height"] doubleValue])];
+            popView.backgroundColor = [UIColor whiteColor];
+            [popView.layer setMasksToBounds:YES];
+            [popView.layer setCornerRadius:3.0];
+
+            NSNumber *alphaValue = [markerAnnotation.infoWindow objectForKey:@"alpha"];
+            if (alphaValue) {
+                popView.alpha = [alphaValue doubleValue];
+            } else {
+                popView.alpha = 1.0;
             }
 
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [mapView selectAnnotation:annotation animated:YES];
-            });
-        }
+            NSNumber *visibleValue = [markerAnnotation.infoWindow objectForKey:@"visible"];
+            if (visibleValue) {
+                popView.hidden = ![visibleValue boolValue];
+            }
 
-        return annotationView;
+            if (markerAnnotation.icon && ![markerAnnotation.icon isEqualToString:@""]) {
+                UIImage *img = [UIImage imageWithContentsOfFile:markerAnnotation.icon];
+                if (img) {
+                    annotationView.image = img;
+                } else {
+                    annotationView.image = [UIImage imageNamed:markerAnnotation.icon];
+                }
+            }
+
+            UILabel *titleLB = [[UILabel alloc] initWithFrame:popView.bounds];
+            titleLB.text = [markerAnnotation.infoWindow objectForKey:@"title"];
+            titleLB.textAlignment = NSTextAlignmentCenter;
+            titleLB.numberOfLines = 0;
+            titleLB.font = [UIFont systemFontOfSize:14.0];
+            [popView addSubview:titleLB];
+
+            BMKActionPaopaoView * pView = [[BMKActionPaopaoView alloc] initWithCustomView:popView];
+            pView.frame = popView.bounds;
+            annotationView.paopaoView = pView;
+            return annotationView;
+        }
     } else if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
         newAnnotationView.pinColor = BMKPinAnnotationColorPurple;
         newAnnotationView.animatesDrop = YES;
         return newAnnotationView;
     }
+    
     return nil;
 }
 
