@@ -114,7 +114,7 @@ Podfile 增加
 ##### Marker Props 属性
 | Prop                    | Type  | Default  | Description
 | ----------------------- |:-----:| :-------:| -------
-| tag                     | int   | -1       | 用于多个Marker时绑定InfoWindow(Component)
+| tag                     | int   | -1       | 用于多个Marker时绑定MapView的infoWindows
 | title                   | string| null     |
 | location                | object| {latitude: 0, longitude: 0}    |
 | alpha                   | float | 1        |
@@ -164,7 +164,7 @@ Podfile 增加
 | rotate                  | float |          |
 | location                | object|{latitude: 0, longitude: 0}
 
-##### InfoWindow Props 属性
+##### InfoWindow Props 属性(Mode 0)
 | Prop                    | Type  | Default  | Description
 | ----------------------- |:-----:| :-------:| -------
 | location                | object|{latitude: 0, longitude: 0}
@@ -172,6 +172,22 @@ Podfile 增加
 | title                   | string| ""       |
 | width                   | int   |          |
 | height                  | int   |          |
+
+##### InfoWindow Props 属性(Mode 1, This Custom)
+| Prop                    | Type  | Default  | Description
+| ----------------------- |:-----:| :-------:| -------
+| tag                     | int   | -1       | This Flag to link marker
+| latitude                | string| "0"      
+| longitude               | string| "0"      
+| status                  | string| ""       | Car status
+| positionTime            | string|  ""      |  定位时间
+| communicationTime       | string| ""       | 通信时间
+| idelTiem                | string| ""       | 状态持续时长
+| speed                   | string| "0"      | 车速
+| positionType            | string| ""       | 定位类型
+| gpsSigna                | string|  ""      | 信号强度
+| gpsNum                  | string| ""       | 定位卫星个数
+| isShow                  | bool  | false    | 是否显示此Infowindow
 
 <MapView>
     <Marker/>
